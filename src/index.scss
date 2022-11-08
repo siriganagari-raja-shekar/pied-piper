@@ -1,0 +1,13 @@
+/* Common stylings */
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body,html {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    background-image: url(./Assets/Images/background3.png);
+}
