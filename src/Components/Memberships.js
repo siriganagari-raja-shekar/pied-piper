@@ -1,5 +1,4 @@
 import './../Assets/Styles/Memberships.scss';
-import { useEffect } from 'react';
 import tickMarkPath from './../Assets/Images/circle-check-regular.svg';
 const Memberships = () => {
 
