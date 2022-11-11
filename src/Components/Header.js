@@ -1,6 +1,6 @@
 import "./../Assets/Styles/Header.scss";
 import { useEffect } from 'react';
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, NavLink } from "react-router-dom";
 
 const Header = () => {
 
@@ -9,12 +9,12 @@ const Header = () => {
             if (!link.classList.contains("fs-5"))
                 link.classList.add("fs-5");
         });
-    })
+    }, [])
 
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light">
-                <Link className="navbar-brand mx-5" to="/">Pied Piper</Link>
+                <NavLink className="navbar-brand mx-5" to="/">Pied Piper</NavLink>
                 <button className="navbar-toggler mx-3" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -24,10 +24,14 @@ const Header = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mx-auto">
                             <li className="nav-item">
-                                <Link className="nav-link navactive" to="/">Home</Link>
+                                <NavLink className={isActive =>
+                                    "nav-link" + (isActive.isActive ? " navactive" : "")
+                                } to="/">Home</NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/subscribe">Subscribe</Link>
+                                <NavLink className={isActive =>
+                                    "nav-link" + (isActive.isActive ? " navactive" : "")
+                                } to="/subscribe">Subscribe</NavLink>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="#">Contact Us</a>
