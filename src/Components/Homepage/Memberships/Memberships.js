@@ -1,5 +1,5 @@
-import './../Assets/Styles/Memberships.scss';
-import tickMarkPath from './../Assets/Images/circle-check-regular.svg';
+import './Memberships.scss';
+import tickMarkPath from '../../../Assets/Images/circle-check-regular.svg';
 const Memberships = () => {
 
     const getCardList = (listItemsContents) =>{

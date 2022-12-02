@@ -1,5 +1,5 @@
-import "./../Assets/Styles/FAQ.scss";
-import faqImg from "./../Assets/Images/FAQ.png";
+import "./FAQ.scss";
+import faqImg from "../../../Assets/Images/FAQ.png";
 
 const FAQ = () => {
     return (

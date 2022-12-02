@@ -1,8 +1,8 @@
-import './../Assets/Styles/ServiceCards.scss';
-import appointmentsImg from './../Assets/Images/appointments.jpg';
-import videoCallImg from './../Assets/Images/videocall.jpg';
-import privacyImg from './../Assets/Images/privacy.jpg';
-import searchDoctorImg from './../Assets/Images/search-doctor.png';
+import './ServiceCards.scss';
+import appointmentsImg from '../../../Assets/Images/appointments.jpg';
+import videoCallImg from '../../../Assets/Images/videocall.jpg';
+import privacyImg from '../../../Assets/Images/privacy.jpg';
+import searchDoctorImg from '../../../Assets/Images/search-doctor.png';
 
 const ServiceCards = () => {
     return (

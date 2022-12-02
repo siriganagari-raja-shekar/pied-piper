@@ -1,6 +1,6 @@
-import "./../Assets/Styles/Header.scss";
+import "./Header.scss";
 import { useEffect } from 'react';
-import { Outlet, Link, NavLink } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 
 const Header = () => {
 

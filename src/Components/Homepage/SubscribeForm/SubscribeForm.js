@@ -1,6 +1,6 @@
-import "./../Assets/Styles/SubscribeForm.scss";
+import "./SubscribeForm.scss";
 import { useEffect } from "react";
-import Toast from "./../../node_modules/bootstrap/js/src/toast"
+import Toast from "../../../../node_modules/bootstrap/js/src/toast"
 
 const SubscribeForm = () => {
     

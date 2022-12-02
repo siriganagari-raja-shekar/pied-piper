@@ -1,0 +1,72 @@
+#profileMedications {
+    border-radius: 0.5em;
+    box-shadow: 2px 1px 5px -3px #000;
+    margin: 1em;
+    padding: 1em;
+}
+
+#profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    #profilePic {
+        background-color: #223554;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+
+    #details ul {
+        list-style: none;
+        padding: 0;
+        margin: 1em;
+    }
+}
+
+#medications {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 2em;
+
+    ul{
+        border-radius: 0.5em;
+    }
+
+    #morning {
+        background-color: #F9EAD5;
+        height: 200px;
+        padding: 0;
+
+        li {
+            list-style: none;
+            list-style: none;
+            margin: 0.5em 1em;
+        }
+    }
+
+    #afternoon {
+        background-color: #F5EEBE;
+        height: 200px;
+        padding: 0;
+
+        li {
+            list-style: none;
+            list-style: none;
+            margin: 0.5em 1em;
+        }
+    }
+
+    #night {
+        background-color: #9E9E9E;
+        height: 200px;
+        padding: 0;
+
+        li {
+            list-style: none;
+            list-style: none;
+            margin: 0.5em 1em;
+        }
+    }
+}

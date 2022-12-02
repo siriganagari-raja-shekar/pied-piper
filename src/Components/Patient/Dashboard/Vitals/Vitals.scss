@@ -1,0 +1,14 @@
+#vitals{
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+}
+.vital{
+    border: 5px solid black;
+    padding: 1em;
+
+    .values{
+        display: flex;
+        flex-direction: row;
+    }
+}

@@ -1,10 +1,10 @@
-import './../Assets/Styles/Carousel.scss';
-import fbIcon from "../Assets/Images/icons8-facebook-500.png";
-import instagramIcon from "../Assets/Images/icons8-instagram-500.png";
-import twitterIcon from "../Assets/Images/icons8-twitter-500.png";
-import carouselImageOne from "../Assets/Images/carousel-image-1.jpg";
-import carouselImageTwo from "../Assets/Images/carousel-image-2.jpg";
-import carouselImageThree from "../Assets/Images/carousel-image-3.jpg";
+import './Carousel.scss';
+import fbIcon from "../../../Assets/Images/icons8-facebook-500.png";
+import instagramIcon from "../../../Assets/Images/icons8-instagram-500.png";
+import twitterIcon from "../../../Assets/Images/icons8-twitter-500.png";
+import carouselImageOne from "../../../Assets/Images/carousel-image-1.jpg";
+import carouselImageTwo from "../../../Assets/Images/carousel-image-2.jpg";
+import carouselImageThree from "../../../Assets/Images/carousel-image-3.jpg";
 
 
 const Carousel = () =>{

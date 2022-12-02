@@ -1,5 +1,5 @@
-import './../Assets/Styles/AboutUs.scss';
-import doctorImage from './../Assets/Images/doctor2.png';
+import './AboutUs.scss';
+import doctorImage from '../../../Assets/Images/doctor2.png';
 
 const AboutUs = () => {
 

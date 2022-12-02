@@ -5,19 +5,19 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import LandingPage from "./Pages/LandingPage";
-import SubscribePage from "./Pages/SubscribePage";
+import LandingPage from "./Pages/Homepage/LandingPage/LandingPage";
+import SubscribePage from "./Pages/Homepage/SubscribePage/SubscribePage";
+import { Dashboard } from './Pages/Patient/Dashboard/Dashboard';
 
-const App = () =>{
-  return(
+const App = () => {
+  return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage/>}>
-        </Route>
-        <Route path="subscribe" element={ <SubscribePage />}></Route>
+        <Route path="/" element={<LandingPage />}></Route>
+        <Route path="subscribe" element={<SubscribePage />}></Route>
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
-    
   )
 }
 
