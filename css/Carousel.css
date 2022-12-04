@@ -1,0 +1,17 @@
+.carousel-icon-holder {
+  background-color: black;
+  border-radius: 50%;
+  text-align: center;
+  padding: 0.5rem;
+  height: 3rem;
+  width: 3rem;
+}
+
+.social-media-icons img {
+  width: 5em;
+  height: 5em;
+}
+.social-media-icons img:hover {
+  transform: scale(1.2, 1.2);
+  transition: transform 0.5s;
+}/*# sourceMappingURL=Carousel.css.map */

@@ -1,0 +1,24 @@
+.service-card {
+  height: 25rem;
+}
+.service-card h2 {
+  padding: 10px;
+}
+.service-card p {
+  padding: 10px;
+}
+.service-card a {
+  background-color: black;
+  color: white;
+  padding: 15px 20px;
+  display: block;
+  text-align: center;
+  margin: 20px 50px;
+}
+.service-card:hover {
+  background-color: #0d6efd;
+  color: white;
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: all 0.4s;
+}/*# sourceMappingURL=ServiceCards.css.map */
