@@ -1,16 +1,16 @@
-.stats{
-    display: flex;
-    flex-direction: column;
-    margin: 1em;
+.stats {
+    position: relative;
     box-shadow: 2px 1px 5px -3px #000;
     height: fit-content;
     border-radius: 0.5em;
+    background-color: white;
 
-    p{
+    p {
         margin: 0;
     }
 }
-.statIcon{
+
+.statIcon {
     background-color: #223554;
     color: white;
     width: 50px;
@@ -18,43 +18,47 @@
     border-radius: 50%;
     position: relative;
 
-    svg{
+    svg {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
 }
-.statContent{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+
+.statContent {
     padding: 1em;
 
-    p{
+    p {
         margin-left: 1em;
-        .statCount{
-            font-size:x-large;
+
+        .statCount {
+            font-size: x-large;
             font-weight: bold;
         }
     }
 }
-.statButton{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+
+.statButton {
     background-color: #3E65A7;
     color: white;
-    align-items: center;
-    padding: 5px;
+    padding: 1em;
     border-bottom-left-radius: 0.5em;
     border-bottom-right-radius: 0.5em;
 
-    svg{
+    svg {
         background-color: #223554;
         border-radius: 50%;
         padding: 0.5em;
         width: 0.7em;
         height: 0.7em;
+    }
+}
+
+.statButton:hover {
+    cursor: pointer;
+
+    svg {
+        transform: scale(1.05);
     }
 }

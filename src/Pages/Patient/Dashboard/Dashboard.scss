@@ -1,21 +1,5 @@
-#navbar{
-    grid-area: "navbar";
-}
-
-#profileMedications{
-    grid-area: "profile";
-}
-
-#stats{
-    grid-area: "stats";
-}
-
-#vitals{
-    grid-area: "vitals";
-}
 
 #dashboard{
-    display: grid;
-    grid-template-areas: "navbar stats profile", "navbar vitals profile";
     height: 100%;
+    background-color: #e8e8e8;
 }

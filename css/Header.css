@@ -1,0 +1,30 @@
+@font-face {
+  font-family: GreatVibes;
+  src: url("../../../Assets/Fonts/GreatVibes-Regular.ttf");
+}
+.navbar {
+  background-color: #e7f1ff;
+  text-align: center;
+}
+.navbar .navbar-brand {
+  font-family: GreatVibes;
+  font-size: 2rem !important;
+}
+.navbar .nav-item {
+  margin: 0.5rem;
+}
+.navbar .nav-item .nav-link {
+  color: black;
+}
+.navbar .nav-item .nav-link:hover {
+  background-color: #0d6efd;
+  color: white;
+  border-radius: 0.5rem;
+  transition: background-color 0.5s;
+}
+.navbar .nav-item .navactive {
+  background-color: #0d6efd;
+  color: white !important;
+  border-radius: 0.5rem;
+  transition: background-color 0.5s;
+}/*# sourceMappingURL=Header.css.map */

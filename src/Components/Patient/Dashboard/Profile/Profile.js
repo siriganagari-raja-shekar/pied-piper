@@ -1,22 +1,22 @@
 import React from 'react'
 import './Profile.scss'
+import { Stack } from 'react-bootstrap'
+import moment from 'moment'
 
 const Profile = (props) => {
     return (
-        <div id="profileMedications">
-            <div id="profile">
+        <Stack id="profileMedications" direction='vertical' gap={5} >
+            <Stack id="profile" direction='horizontal' gap={3}>
                 <div id="profilePic">
 
                 </div>
-                <div id="details">
-                    <ul>
-                        <li><h3>{props.name}</h3></li>
-                        <li>{props.dob}</li>
-                        <li>{props.mailid}</li>
-                    </ul>
-                </div>
-            </div>
-            <div id="medications">
+                <Stack id="details" direction='vertical'>
+                        <h4>{props.name}</h4>
+                        <p>Born on <b>{moment(props.dob).format("Do MMM, YY")}</b></p>
+                        <p>{props.mailid}</p>
+                </Stack>
+            </Stack>
+            <Stack id="medications">
                 <ul id="morning">
                     {props.meds.morning.map((med) =>  <li key={med}>{med}</li>)}
                 </ul>
@@ -26,8 +26,8 @@ const Profile = (props) => {
                 <ul id="night">
                     {props.meds.night.map((med) => <li key={med}>{med}</li>)}
                 </ul>
-            </div>
-        </div>
+            </Stack>
+        </Stack>
     )
 }
 

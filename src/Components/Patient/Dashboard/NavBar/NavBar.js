@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import "./NavBar.scss"
+import { Stack } from 'react-bootstrap'
 
 const activeLink = (isActive) => {
     return isActive.isActive ? 'selected' : ''
@@ -9,22 +10,22 @@ const activeLink = (isActive) => {
 const NavBar = (props) => {
     return (
         <>
-            <div id="navbar">
-                <div id="header">
+            <Stack id="navbar" direction='vertical'>
+                <Stack id="header" direction='horizontal'>
                     <p id="logo">PP</p> <p id="title">PiedPiper</p>
-                </div>
-                <ul>
+                </Stack>
+                <Stack id='links' direction='vertical'>
                     {
                         props.links.map((link) => {
                             return (
-                                <li key={link.name}>
+                                <div key={link.name}>
                                     <NavLink className={activeLink} to={link.url} >{link.icon}<span>{link.name}</span></NavLink>
-                                </li>
+                                </div>
                             )
                         })
                     }
-                </ul>
-            </div>
+                </Stack>
+            </Stack>
         </>
     )
 }

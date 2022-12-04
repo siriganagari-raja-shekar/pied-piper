@@ -3,16 +3,17 @@ import { useEffect } from "react";
 import Toast from "../../../../node_modules/bootstrap/js/src/toast"
 
 const SubscribeForm = () => {
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         document.getElementById("subscribe-form").reset();
-        document.querySelectorAll(".form-group").forEach(group =>{
+        document.querySelectorAll(".form-group").forEach(group => {
             group.classList.add("my-4");
         });
 
         var inputRegex = {
             nameRegex: "^\\w+\\s\\w+$",
             emailAddressRegex: "^[a-zA-Z0-9]+@\\w+.\\w{1,3}$",
+            passwordRegex: "^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$" ,
             phoneNumberRegex: "^\\d{3}-\\d{3}-\\d{4}$",
             address1Regex: "^\\d{1,} [a-zA-Z0-9\\s]+$",
             address2Regex: "^[a-zA-Z0-9-#\\s]*$"
@@ -25,35 +26,36 @@ const SubscribeForm = () => {
             inputElement.setAttribute("pattern", inputRegex[key]);
         }
 
-        document.querySelectorAll("input[name='subscriptionType']").forEach(radio => {;
-            radio.addEventListener("input", (event)=>{
+        document.querySelectorAll("input[name='subscriptionType']").forEach(radio => {
+            ;
+            radio.addEventListener("input", (event) => {
                 var subType = event.target.value.trim();
                 var subOptions = {
-                    individual: ["Bronze","Silver","Gold","Platinum"],
+                    individual: ["Bronze", "Silver", "Gold", "Platinum"],
                     family: ["Basic", "Premium"]
                 }
                 var selectInput = document.getElementById("membershipPlanSelect");
                 selectInput.setAttribute("required", "required");
-                while(selectInput.firstChild)
+                while (selectInput.firstChild)
                     selectInput.removeChild(selectInput.firstChild);
                 var defaultOption = document.createElement("option");
                 defaultOption.setAttribute("selected", "selected");
                 defaultOption.setAttribute("disabled", "disabled");
-                defaultOption.setAttribute("value","");
+                defaultOption.setAttribute("value", "");
                 defaultOption.text = "Choose a plan";
                 selectInput.appendChild(defaultOption);
 
                 subOptions[subType].forEach(optionText => {
                     var optionElement = document.createElement("option");
-                    optionElement.text=optionText;
+                    optionElement.text = optionText;
                     selectInput.appendChild(optionElement);
                 });
                 selectInput.parentElement.style.display = "block";
             });
         })
-    },[]);
+    }, []);
 
-    const formValidation = (event) =>{
+    const formValidation = (event) => {
         var form = event.target;
         if (!form.checkValidity()) {
             event.preventDefault();
@@ -63,7 +65,7 @@ const SubscribeForm = () => {
         form.classList.add('was-validated');
     }
 
-    const showToast = (event) =>{
+    const showToast = (event) => {
         var myToast = Toast.getOrCreateInstance(document.getElementsByClassName("toast")[0]);
         myToast.show();
     }
@@ -91,6 +93,20 @@ const SubscribeForm = () => {
                         </div>
                         <div className="invalid-feedback">
                             Please enter email in format: name@example.com
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="password">Password*</label>
+                        <input type="password" className="form-control" id="password" />
+                        <div className="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div className="invalid-feedback">
+                            <b>Please enter password in format:</b> <br />
+                            At least one letter <br />
+                            At least one digit <br />
+                            At least one special character <br/>
+                            Minimum eight in length <br />
                         </div>
                     </div>
                     <div className="form-group">
@@ -135,12 +151,12 @@ const SubscribeForm = () => {
                             <label className="form-check-label" htmlFor="familyMembership">Family</label>
                         </div>
                         <button type="button" className="btn btn-primary corporate-button" onClick={showToast}>Corporate Plans?</button>
-                        <div className="position-fixed bottom-0 end-0 p-3" style={{zIndex: 11}}>
+                        <div className="position-fixed bottom-0 end-0 p-3" style={{ zIndex: 11 }}>
                             <div id="liveToast" className="toast hide corporate-toast" role="alert" aria-live="assertive"
                                 aria-atomic="true">
                                 <div className="toast-header">
                                     <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Square_blue.svg" className="rounded me-2"
-                                        alt="Blue square" style={{width: 1 +"rem", height: 1 +"rem"}} />
+                                        alt="Blue square" style={{ width: 1 + "rem", height: 1 + "rem" }} />
                                     <strong className="me-auto">Pied Piper</strong>
                                     <small>2s ago</small>
                                     <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>

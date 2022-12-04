@@ -1,0 +1,25 @@
+#labresults {
+  background: white;
+  box-shadow: 2px 1px 5px -3px #000;
+  border-radius: 0.5em;
+  padding: 1em;
+}
+#labresults #title svg {
+  font-size: 30px;
+}
+#labresults .nav-link {
+  text-align: center;
+  text-decoration: underline;
+}
+#labresults .nav-link:hover {
+  color: #3E65A7;
+}
+
+.labresult {
+  border: 3px solid black;
+  padding: 0.5em;
+  border-radius: 0.5em;
+}
+.labresult p {
+  margin: 0;
+}/*# sourceMappingURL=LabResults.css.map */

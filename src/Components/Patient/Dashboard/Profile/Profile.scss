@@ -1,14 +1,16 @@
 #profileMedications {
     border-radius: 0.5em;
     box-shadow: 2px 1px 5px -3px #000;
-    margin: 1em;
     padding: 1em;
+    height: 100%;
+    background-color: white;
+
+    p{
+        margin: 0;
+    }
 }
 
 #profile {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
 
     #profilePic {
         background-color: #223554;
@@ -24,11 +26,9 @@
     }
 }
 
-#medications {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 2em;
+#medications {   
+    
+    height: fit-content;
 
     ul{
         border-radius: 0.5em;

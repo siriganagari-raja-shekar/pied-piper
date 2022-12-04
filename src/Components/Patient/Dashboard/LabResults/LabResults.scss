@@ -1,0 +1,30 @@
+#labresults{
+    background: white;
+    box-shadow: 2px 1px 5px -3px #000;
+    border-radius: 0.5em;
+    padding: 1em;
+
+    #title{
+        svg{
+            font-size: 30px;
+        }
+    }
+
+    .nav-link{
+        text-align: center;
+        text-decoration: underline;
+
+        &:hover{
+            color: #3E65A7;
+        }
+    }
+}
+.labresult{
+    border: 3px solid black;
+    padding: 0.5em;
+    border-radius: 0.5em;
+
+    p{
+        margin: 0;
+    }
+}
