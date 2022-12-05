@@ -29,3 +29,21 @@ export const getActiveToken = () =>{
     const token = localStorage.getItem('token')
     return token;
 }
+
+export const userSignUp = async (userObject) =>{
+    try{
+        const response = await axios.post(process.env.REACT_APP_USERS, userObject);
+        if(response.status === 200){
+            return {
+                status: "success",
+                user: response.data
+            }
+        }
+    }catch(e){
+        console.log(e);
+        return {
+            status: "failure",
+            error: e.response.data.error
+        }
+    }
+}
