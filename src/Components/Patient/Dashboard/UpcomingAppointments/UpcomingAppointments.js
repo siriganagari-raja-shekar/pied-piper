@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock } from '@fortawesome/free-solid-svg-icons'
 import './UpcomingAppointments.scss'
 import { NavLink } from 'react-router-dom'
-import { formatDate } from '../../../../Services/Utils'
+import { formatDate } from '../../../../services/utils'
 import profile from '../../../../Assets/Images/profilejpg.jpg'
 import { useState } from 'react'
-import VideoChat from '../../../Twilio/VideoChat'
+import VideoChat from '../../../twilio/VideoChat'
 
 
 const UpcomingAppointment = ({ appointment, videoCallModalDisplay, setVideoCallModalDisplay }) => {

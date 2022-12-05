@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Alert, Card, Stack } from "react-bootstrap";
-import { authenticateUser } from "../Services/AuthService";
+import { authenticateUser } from "../services/authService";
 
 
 function Signin() {

@@ -1,11 +1,11 @@
 import './LandingPage.scss';
-import Header from '../../../Components/Homepage/Header/Header'
-import Carousel from '../../../Components/Homepage/Carousel/Carousel';
-import AboutUs from '../../../Components/Homepage/AboutUs/AboutUs';
-import ServiceCards from '../../../Components/Homepage/ServiceCards/ServiceCards';
-import Memberships from '../../../Components/Homepage/Memberships/Memberships';
-import FAQ from '../../../Components/Homepage/FAQ/FAQ';
-import Footer from '../../../Components/Homepage/Footer/Footer';
+import Header from '../../../components/homepage/Header/Header'
+import Carousel from '../../../components/homepage/Carousel/Carousel';
+import AboutUs from '../../../components/homepage/AboutUs/AboutUs';
+import ServiceCards from '../../../components/homepage/ServiceCards/ServiceCards';
+import Memberships from '../../../components/homepage/Memberships/Memberships';
+import FAQ from '../../../components/homepage/FAQ/FAQ';
+import Footer from '../../../components/homepage/Footer/Footer';
 
 
 const LandingPage = () =>{

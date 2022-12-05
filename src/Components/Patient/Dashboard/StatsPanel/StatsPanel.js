@@ -4,7 +4,7 @@ import { faVideo, faMicrophone } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Stats from '../Stats/Stats'
 import { Stack } from 'react-bootstrap'
-import { getStoredUser } from '../../../../Services/AuthService'
+import { getStoredUser } from '../../../../services/authService'
 
 const StatsPanel = () => {
     const user= getStoredUser()

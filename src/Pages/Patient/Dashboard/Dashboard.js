@@ -1,21 +1,20 @@
-import React, { useState } from 'react'
-import NavBar from '../../../Components/Patient/Dashboard/NavBar/NavBar'
+import React, { useState, useEffect } from 'react'
+import NavBar from '../../../components/commonComponents/NavBar/NavBar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-    faChartLine, faCalendarCheck, faClockRotateLeft,
-    faUser, faRightFromBracket, faTemperatureHalf, faDroplet, faHeartPulse, faLungs
+    faTemperatureHalf, faDroplet, faHeartPulse, faLungs
 } from '@fortawesome/free-solid-svg-icons'
-import Profile from '../../../Components/Patient/Dashboard/Profile/Profile'
-import StatsPanel from '../../../Components/Patient/Dashboard/StatsPanel/StatsPanel'
-import './Dashboard.scss'
-import Vitals from '../../../Components/Patient/Dashboard/Vitals/Vitals'
+import Profile from '../../../components/patient/Dashboard/Profile/Profile'
+import StatsPanel from '../../../components/patient/Dashboard/StatsPanel/StatsPanel'
+import Vitals from '../../../components/patient/Dashboard/Vitals/Vitals'
 import { Stack } from 'react-bootstrap'
-import UpcomingAppointments from '../../../Components/Patient/Dashboard/UpcomingAppointments/UpcomingAppointments'
-import Prescriptions from '../../../Components/Patient/Dashboard/Prescriptions/Prescriptions'
-import LabResults from '../../../Components/Patient/Dashboard/LabResults/LabResults'
-import { getStoredUser } from '../../../Services/AuthService'
-import { getAllLabTests, getAppointmentHistory, getLastAppointment, getUpcomingAppointments } from '../../../Services/AppointmentsService'
-import { useEffect } from 'react'
+import UpcomingAppointments from '../../../components/patient/Dashboard/UpcomingAppointments/UpcomingAppointments'
+import Prescriptions from '../../../components/patient/Dashboard/Prescriptions/Prescriptions'
+import LabResults from '../../../components/patient/Dashboard/LabResults/LabResults'
+import { getStoredUser } from '../../../services/authService'
+import { getAllLabTests, getAppointmentHistory, getLastAppointment, getUpcomingAppointments } from '../../../services/appointmentsService'
+import { patientNavLInks } from '../Properties/patientNavLinks'
+import './Dashboard.scss'
 
 export const Dashboard = () => {
     
@@ -29,33 +28,6 @@ export const Dashboard = () => {
     const [appointmentHistory, setAppointmentHistory] = useState([])
     const [labTests, setLabTests] = useState([])
 
-    const links = [
-        {
-            name: "Dashboard",
-            url: "/dashboard",
-            icon: <FontAwesomeIcon icon={faChartLine} />
-        },
-        {
-            name: "Book Appointments",
-            url: "/appointments",
-            icon: <FontAwesomeIcon icon={faCalendarCheck} />
-        },
-        {
-            name: "Appointment History",
-            url: "/history",
-            icon: <FontAwesomeIcon icon={faClockRotateLeft} />
-        },
-        {
-            name: "Profile",
-            url: "/profile",
-            icon: <FontAwesomeIcon icon={faUser} />
-        },
-        {
-            name: "logout",
-            url: "/logout",
-            icon: <FontAwesomeIcon icon={faRightFromBracket} />
-        }
-    ]
 
     const populateData = async () => {
         const appointments = await getUpcomingAppointments()
@@ -107,7 +79,7 @@ export const Dashboard = () => {
 
     return (
         <Stack id="dashboard" direction='horizontal' gap={3} className='justify-content-between'>
-            <NavBar links={links} />
+            <NavBar links={patientNavLInks} />
             <Stack direction='horizontal' className='p-3' gap={3}>
                 <Stack direction='vertical' gap={3} className='justify-content-between'>
                     <StatsPanel />
