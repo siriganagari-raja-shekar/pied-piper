@@ -28,6 +28,7 @@ const Participant = ({ participant }) => {
             }
         };
 
+
         setVideoTracks(trackpubsToTracks(participant.videoTracks));
         setAudioTracks(trackpubsToTracks(participant.audioTracks));
 

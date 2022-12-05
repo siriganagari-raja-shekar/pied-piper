@@ -7,7 +7,7 @@ const Room = ({ roomName, token, handleLogout }) => {
     const [participants, setParticipants] = useState([]);
 
     const remoteParticipants = participants.map(participant => (
-        <Participant key={participant.sid} participant={participant.identity} />
+        <Participant key={participant.sid} participant={participant} />
     ));
 
     useEffect(() => {
