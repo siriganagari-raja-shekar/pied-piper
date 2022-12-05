@@ -11,6 +11,7 @@ import SubscribePage from "./Pages/Homepage/SubscribePage/SubscribePage";
 import { Dashboard } from './Pages/Patient/Dashboard/Dashboard';
 import Signin from './Authentication/Signin'
 import Logout from './Authentication/Logout';
+import BookAppointments from './Pages/Patient/BookAppointments/BookAppointments';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="subscribe" element={<SubscribePage />}></Route>
         <Route element={<ProtectedRoute />}>
           <Route element={<Dashboard />} path="/dashboard" />
+          <Route element={<BookAppointments />} path='/appointments' />
           <Route element={<Logout />} path="/logout" />
         </Route>
       </Routes>
