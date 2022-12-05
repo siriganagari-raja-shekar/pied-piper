@@ -18,7 +18,7 @@ import { getAllLabTests, getAppointmentHistory, getLastAppointment, getUpcomingA
 import { useEffect } from 'react'
 
 export const Dashboard = () => {
-
+    
     const [upcomingAppointments, setUpcomingAppointments] = useState([])
     const [lastAppointment, setLastAppointment] = useState({
         vitals: {},
