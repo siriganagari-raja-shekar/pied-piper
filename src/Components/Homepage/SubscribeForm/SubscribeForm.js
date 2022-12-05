@@ -1,10 +1,10 @@
 import "./SubscribeForm.scss";
 import { useEffect } from "react";
-import Toast from "../../../../node_modules/bootstrap/js/src/toast"
+import Toast from "bootstrap/js/src/toast"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 import { useState } from "react";
-import { userSignUp } from "../../../Services/AuthService";
+import { userSignUp } from "../../../services/authService";
 import { useNavigate } from "react-router-dom";
 
 

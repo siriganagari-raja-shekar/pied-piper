@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getStoredUser, getActiveToken } from './AuthService'
+import { getStoredUser, getActiveToken } from './authService'
 import moment from 'moment'
 
 export const getUpcomingAppointments = async () => {

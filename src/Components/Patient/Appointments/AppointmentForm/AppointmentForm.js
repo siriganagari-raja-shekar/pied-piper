@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Form, Button, Stack } from 'react-bootstrap'
-import { getDoctor } from '../../../../Services/UserService'
+import { getDoctor } from '../../../../services/userService'
 import './AppointmentForm.scss'
 import moment from 'moment'
-import { createAppointment } from '../../../../Services/AppointmentsService'
+import { createAppointment } from '../../../../services/appointmentsService'
 
 const AppointmentForm = ({ cities }) => {
     const [appointmentDate, setAppointmentDate] = useState("")

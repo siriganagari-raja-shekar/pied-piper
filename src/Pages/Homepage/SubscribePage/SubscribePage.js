@@ -1,6 +1,6 @@
-import Header from '../../../Components/Homepage/Header/Header';
-import Footer from '../../../Components/Homepage/Footer/Footer';
-import SubscribeForm from '../../../Components/Homepage/SubscribeForm/SubscribeForm';
+import Header from '../../../components/homepage/Header/Header';
+import Footer from '../../../components/homepage/Footer/Footer';
+import SubscribeForm from '../../../components/homepage/SubscribeForm/SubscribeForm';
 
 const SubscribePage = () => {
 

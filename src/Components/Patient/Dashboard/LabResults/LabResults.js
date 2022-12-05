@@ -4,7 +4,7 @@ import { faFilePrescription, faEye } from '@fortawesome/free-solid-svg-icons'
 import { NavLink, Stack, Modal } from 'react-bootstrap'
 import './LabResults.scss'
 import { useState } from 'react'
-import { formatDate } from '../../../../Services/Utils'
+import { formatDate } from '../../../../services/utils'
 
 const LabResult = ({ labTest }) => {
     return (

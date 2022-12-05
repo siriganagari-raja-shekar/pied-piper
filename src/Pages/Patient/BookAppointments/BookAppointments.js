@@ -1,6 +1,6 @@
 import React from 'react'
-import AppointmentForm from '../../../Components/Patient/Appointments/AppointmentForm/AppointmentForm'
-import NavBar from '../../../Components/Patient/Dashboard/NavBar/NavBar'
+import AppointmentForm from '../../../components/patient/Appointments/AppointmentForm/AppointmentForm'
+import NavBar from '../../../components/commonComponents/NavBar/NavBar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faChartLine, faCalendarCheck, faClockRotateLeft,
@@ -9,12 +9,9 @@ import {
 import { Stack } from 'react-bootstrap'
 import './BookAppointments.scss'
 import { useState, useEffect } from 'react'
-import { getUpcomingAppointments } from '../../../Services/AppointmentsService'
-import UpcomingAppointments from '../../../Components/Patient/Dashboard/UpcomingAppointments/UpcomingAppointments'
-import { getCities } from '../../../Services/UserService'
+import { getCities } from '../../../services/userService'
 
 const BookAppointments = () => {
-    const [upcomingAppointments, setUpcomingAppointments] = useState([])
     const [cities, setCities] = useState([])
     const links = [
         {
@@ -45,10 +42,8 @@ const BookAppointments = () => {
     ]
 
     const populateData = async () => {
-        const appointments = await getUpcomingAppointments()
         const doctorCities= await getCities()
 
-        setUpcomingAppointments(appointments)
         setCities(doctorCities)
     }
 

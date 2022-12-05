@@ -5,13 +5,15 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import ProtectedRoute from './Authentication/ProtectedRoute';
-import LandingPage from "./Pages/Homepage/LandingPage/LandingPage";
-import SubscribePage from "./Pages/Homepage/SubscribePage/SubscribePage";
-import { Dashboard } from './Pages/Patient/Dashboard/Dashboard';
-import Signin from './Authentication/Signin'
-import Logout from './Authentication/Logout';
-import BookAppointments from './Pages/Patient/BookAppointments/BookAppointments';
+import PatientRoutes from './authentication/PatientRoutes';
+import LandingPage from './pages/homepage/LandingPage/LandingPage'
+import SubscribePage from "./pages/homepage/SubscribePage/SubscribePage";
+import { Dashboard } from './pages/patient/Dashboard/Dashboard';
+import Signin from './authentication/Signin'
+import Logout from './authentication/Logout';
+import BookAppointments from './pages/patient/BookAppointments/BookAppointments';
+import DoctorRoutes from './authentication/DoctorRoutes';
+import DoctorDashboard from './pages/doctor/DoctorDashboard';
 
 const App = () => {
   return (
@@ -20,10 +22,13 @@ const App = () => {
         <Route path="/signin" element={<Signin />}></Route>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="subscribe" element={<SubscribePage />}></Route>
-        <Route element={<ProtectedRoute />}>
+        <Route element={<PatientRoutes />}>
           <Route element={<Dashboard />} path="/dashboard" />
           <Route element={<BookAppointments />} path='/appointments' />
           <Route element={<Logout />} path="/logout" />
+        </Route>
+        <Route element={<DoctorRoutes />}>
+          <Route element={<DoctorDashboard />} path="/doctor/dashboard" />
         </Route>
       </Routes>
     </BrowserRouter>
