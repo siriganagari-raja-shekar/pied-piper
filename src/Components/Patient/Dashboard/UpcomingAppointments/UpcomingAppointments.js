@@ -7,9 +7,10 @@ import { NavLink } from 'react-router-dom'
 import { formatDate } from '../../../../Services/Utils'
 import profile from '../../../../Assets/Images/profilejpg.jpg'
 import { useState } from 'react'
+import VideoChat from '../../../Twilio/VideoChat'
 
 
-const UpcomingAppointment = ({ appointment }) => {
+const UpcomingAppointment = ({ appointment, videoCallModalDisplay, setVideoCallModalDisplay }) => {
     return (
         <Stack key={appointment.id} direction='vertical' className='appointment'>
             <span className="backgroundClock"><FontAwesomeIcon icon={faClock} /></span>
@@ -32,7 +33,7 @@ const UpcomingAppointment = ({ appointment }) => {
             </Stack>
             {
                 appointment.appointmentType === 'video' &&
-                <Button>Connect to call</Button>
+                <Button onClick={()=> setVideoCallModalDisplay(!videoCallModalDisplay)}>Connect to call</Button>
             }
         </Stack>
     )
@@ -41,6 +42,7 @@ const UpcomingAppointment = ({ appointment }) => {
 const UpcomingAppointments = ({ appointments }) => {
     let count = 0
     const [lgShow, setLgShow] = useState(false);
+    const [videoCallModalDisplay, setVideoCallModalDisplay]= useState(false);
 
     return (
         <>
@@ -54,7 +56,7 @@ const UpcomingAppointments = ({ appointments }) => {
                         count++
                         if (count <= 2) {
                             return (
-                                <UpcomingAppointment key={appointment.id} appointment={appointment} />
+                                <UpcomingAppointment key={appointment.id} appointment={appointment} videoCallModalDisplay={videoCallModalDisplay} setVideoCallModalDisplay={setVideoCallModalDisplay} />
                             )
                         }
                     })
@@ -76,10 +78,25 @@ const UpcomingAppointments = ({ appointments }) => {
                         {
                             appointments.map((appointment) => {
                                 return (
-                                    <UpcomingAppointment key={appointment.id} appointment={appointment} />
+                                    <UpcomingAppointment key={appointment.id} appointment={appointment} videoCallModalDisplay={videoCallModalDisplay} setVideoCallModalDisplay={setVideoCallModalDisplay}/>
                                 )
                             })
                         }
+                    </Stack>
+                </Modal.Body>
+            </Modal>
+            <Modal
+                size="lg"
+                show={videoCallModalDisplay}
+                onHide={() => setVideoCallModalDisplay(false)}
+                aria-labelledby="Twillio video Call"
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="Twilio video call">Twilio Video Call</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Stack direction='vertical'>
+                        <VideoChat />
                     </Stack>
                 </Modal.Body>
             </Modal>

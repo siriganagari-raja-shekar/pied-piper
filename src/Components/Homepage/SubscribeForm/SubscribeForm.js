@@ -54,7 +54,6 @@ const SubscribeForm = () => {
     }
     const addingHandlersForSubscription = ()=>{
         document.querySelectorAll("input[name='subscriptionType']").forEach(radio => {
-            ;
             radio.addEventListener("input", (event) => {
                 var subType = event.target.value.trim();
                 var subOptions = {
