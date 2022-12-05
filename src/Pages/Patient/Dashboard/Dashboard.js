@@ -3,7 +3,7 @@ import NavBar from '../../../Components/Patient/Dashboard/NavBar/NavBar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faChartLine, faCalendarCheck, faClockRotateLeft,
-    faUser, faRightFromBracket, faTemperatureHalf, faDroplet, faHeartPulse
+    faUser, faRightFromBracket, faTemperatureHalf, faDroplet, faHeartPulse, faLungs
 } from '@fortawesome/free-solid-svg-icons'
 import Profile from '../../../Components/Patient/Dashboard/Profile/Profile'
 import StatsPanel from '../../../Components/Patient/Dashboard/StatsPanel/StatsPanel'
@@ -14,12 +14,20 @@ import UpcomingAppointments from '../../../Components/Patient/Dashboard/Upcoming
 import Prescriptions from '../../../Components/Patient/Dashboard/Prescriptions/Prescriptions'
 import LabResults from '../../../Components/Patient/Dashboard/LabResults/LabResults'
 import { getStoredUser } from '../../../Services/AuthService'
-import { getUpcomingAppointments } from '../../../Services/AppointmentsService'
+import { getAllLabTests, getAppointmentHistory, getLastAppointment, getUpcomingAppointments } from '../../../Services/AppointmentsService'
 import { useEffect } from 'react'
 
-export const Dashboard =  () => {
+export const Dashboard = () => {
 
     const [upcomingAppointments, setUpcomingAppointments] = useState([])
+    const [lastAppointment, setLastAppointment] = useState({
+        vitals: {},
+        prescription: {
+            meds: []
+        }
+    })
+    const [appointmentHistory, setAppointmentHistory] = useState([])
+    const [labTests, setLabTests] = useState([])
 
     const links = [
         {
@@ -49,115 +57,56 @@ export const Dashboard =  () => {
         }
     ]
 
-    const populateAppointments= async()=>{
+    const populateData = async () => {
         const appointments = await getUpcomingAppointments()
+        const vitals = await getLastAppointment()
+        const pastAppointments = await getAppointmentHistory()
+        const tests = await getAllLabTests()
+
+        setLastAppointment(vitals)
         setUpcomingAppointments(appointments)
+        setAppointmentHistory(pastAppointments)
+        setLabTests(tests)
     }
-    
-    useEffect(()=>{
-        populateAppointments()
+
+    useEffect(() => {
+        populateData()
     }, [])
 
-    const user= getStoredUser()
-    
-    const meds = {
-        morning: [
-            "Brufen",
-            "Paracetamol"
-        ],
-        afternoon: [
-            "Cofsils",
-            "Paracetamol"
-        ],
-        night: [
-            "Brufen",
-            "Paracetamol"
-        ]
-    }
-
+    const user = getStoredUser()
     const vitals = [
         {
             name: "Heart rate",
             logo: <FontAwesomeIcon icon={faHeartPulse} />,
-            value: 102,
-            measure: "bpm",
+            value: lastAppointment.vitals.pulse,
+            measure: " bpm",
             desc: "Pulse is the most important physiological indicator"
         },
         {
             name: "Temperature",
             logo: <FontAwesomeIcon icon={faTemperatureHalf} />,
-            value: 37.4,
-            measure: "c",
+            value: lastAppointment.vitals.temperature,
+            measure: " F",
             desc: "Temperature below 35 Celsius is very dangerous"
         },
         {
             name: "Blood Pressure",
             logo: <FontAwesomeIcon icon={faDroplet} />,
-            value: "120/80",
+            value: lastAppointment.vitals.bloodPressure,
             measure: "",
             desc: "Blood pressure can rise and fall several times a day"
-        }
-    ]
-
-    const prescriptions = [
-        {
-            id: '1',
-            problemDiagnosed: "Fever",
-            date: "12th Aug 2022",
-            doctor: {
-                name: 'Dr. Andrew rathod',
-            }
         },
         {
-            id: '2',
-            problemDiagnosed: "Eye infection",
-            date: "19th Dec 2022",
-            doctor: {
-                name: 'Dr. Richard',
-            }
-        },
-        {
-            id: '3',
-            problemDiagnosed: "AIDs",
-            date: "19th Dec 2022",
-            doctor: {
-                name: 'Dr. Sins',
-            }
-        },
-        {
-            id: '4',
-            problemDiagnosed: "HIV",
-            date: "12th April 2022",
-            doctor: {
-                name: 'Dr. Samaram',
-            }
-        },
-        {
-            id: '5',
-            problemDiagnosed: "Herpes",
-            date: "14th Feb 2022",
-            doctor: {
-                name: 'Dr. Sins',
-            }
-        }
-    ]
-
-    const results = [
-        {
-            id: '1',
-            name: "X-ray",
-            date: "22nd Sept 2022"
-        },
-        {
-            id: '2',
-            name: "Glucose levels test",
-            date: "3rd Aug 2022"
+            name: "SpO2",
+            logo: <FontAwesomeIcon icon={faLungs} />,
+            value: lastAppointment.vitals.bloodOxygenLevel,
+            measure: " %",
+            desc: "Blood pressure can rise and fall several times a day"
         }
     ]
 
     return (
         <Stack id="dashboard" direction='horizontal' gap={3} className='justify-content-between'>
-            {console.log(upcomingAppointments)}
             <NavBar links={links} />
             <Stack direction='horizontal' className='p-3' gap={3}>
                 <Stack direction='vertical' gap={3} className='justify-content-between'>
@@ -166,12 +115,16 @@ export const Dashboard =  () => {
                     <Stack direction='horizontal' gap={3}>
                         <UpcomingAppointments appointments={upcomingAppointments} />
                         <Stack direction='vertical' gap={3}>
-                            <Prescriptions prescriptions={prescriptions} />
-                            <LabResults results={results} />
+                            <Prescriptions appointmentHistory={appointmentHistory} />
+                            <LabResults labTests={labTests} />
                         </Stack>
                     </Stack>
                 </Stack>
-                <Profile name={user.name} mailid={user.email} dob={user.dateOfBirth} meds={meds} />
+                <Profile name={user.name}
+                    mailid={user.email}
+                    dob={user.dateOfBirth}
+                    meds={lastAppointment.prescription.meds}
+                />
             </Stack>
         </Stack>
     )

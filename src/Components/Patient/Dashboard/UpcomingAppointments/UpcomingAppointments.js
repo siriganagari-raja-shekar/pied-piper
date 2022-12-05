@@ -54,7 +54,7 @@ const UpcomingAppointments = ({ appointments }) => {
                         count++
                         if (count <= 2) {
                             return (
-                                <UpcomingAppointment appointment={appointment} />
+                                <UpcomingAppointment key={appointment.id} appointment={appointment} />
                             )
                         }
                     })
@@ -76,7 +76,7 @@ const UpcomingAppointments = ({ appointments }) => {
                         {
                             appointments.map((appointment) => {
                                 return (
-                                    <UpcomingAppointment appointment={appointment} />
+                                    <UpcomingAppointment key={appointment.id} appointment={appointment} />
                                 )
                             })
                         }

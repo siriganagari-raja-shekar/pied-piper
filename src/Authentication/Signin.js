@@ -25,7 +25,6 @@ function Signin() {
       });
     } else if (await authenticateUser(userData.username, userData.password)) {
       //Signin Success
-      console.log("logged in")
       window.location.pathname = "/dashboard";
     } else {
       //If credentials entered is invalid

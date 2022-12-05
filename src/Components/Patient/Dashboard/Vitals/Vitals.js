@@ -1,7 +1,5 @@
 import React from 'react'
 import './Vitals.scss'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Stack } from 'react-bootstrap'
 
 const Vitals = (props) => {
@@ -21,9 +19,6 @@ const Vitals = (props) => {
           )
         })
       }
-      <div id="addVital">
-        <button><FontAwesomeIcon icon={faPlus} /></button>
-      </div>
     </Stack>
   )
 }

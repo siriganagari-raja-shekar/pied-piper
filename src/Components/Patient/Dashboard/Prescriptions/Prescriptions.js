@@ -6,19 +6,19 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './Prescriptions.scss'
 
-const Prescription = ({ prescription }) => {
+const Prescription = ({ prescription, doctor}) => {
     return (
         <Stack direction='horizontal' className='prescription'>
             <Stack direction='vertical'>
                 <p><b>{prescription.problemDiagnosed}</b>, {prescription.date}</p>
-                <p style={{ fontSize: '12px' }}>by {prescription.doctor.name}</p>
+                <p style={{ fontSize: '12px' }}>by {doctor.name}</p>
             </Stack>
             <span><FontAwesomeIcon icon={faEye} /></span>
         </Stack>
     )
 }
 
-const Prescriptions = ({ prescriptions }) => {
+const Prescriptions = ({ appointmentHistory }) => {
     const [lgShow, setLgShow] = useState(false);
     let count=0;
     return (
@@ -29,16 +29,19 @@ const Prescriptions = ({ prescriptions }) => {
                     <h2>Past prescriptions</h2>
                 </Stack>
                 {
-                    prescriptions.map((prescription) => {
+                    appointmentHistory.map((appointment) => {
                         count++
                         if(count <=2){
                             return (
-                                <Prescription key={prescription.id} prescription={prescription} />
+                                <Prescription key={appointment.prescription.id} 
+                                            prescription={appointment.prescription} 
+                                            doctor={appointment.doctor}
+                                        />
                             )
                         }
                     })
                 }
-                <NavLink to="./dashboard" onClick={() => setLgShow(true)}>View more</NavLink>
+                <NavLink onClick={() => setLgShow(true)}>View more</NavLink>
             </Stack>
             <Modal
                 size="lg"
@@ -53,9 +56,12 @@ const Prescriptions = ({ prescriptions }) => {
                 <Modal.Body>
                     <Stack direction='vertical' gap={3}>
                         {
-                            prescriptions.map((prescription) => {
+                            appointmentHistory.map((appointment) => {
                                 return (
-                                    <Prescription key={prescription.id} prescription={prescription} />
+                                    <Prescription key={appointment.prescription.id} 
+                                            prescription={appointment.prescription} 
+                                            doctor={appointment.doctor}
+                                        />
                                 )
                             })
                         }
