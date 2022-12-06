@@ -1,13 +1,13 @@
 import React from 'react';
 import { Stack, Form, Button } from 'react-bootstrap';
 import "./ProfileCard.scss";
-import profilePicture from "./../../../../Assets/Images/profilejpg.jpg";
+import profilePicture from "./../../../Assets/Images/profilejpg.jpg";
 import { titleCase } from 'title-case';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import * as userService from "./../../../../services/userService";
+import * as userService from "../../../services/userService";
 
 const ProfileCard = (props) => {
 
@@ -47,6 +47,7 @@ const ProfileCard = (props) => {
                 ...user,
                 dateOfBirth: JSON.stringify(user.dateOfBirth)
             }
+            console.log("User to update", userToUpdate);
             const updatedUser = await userService.updateUser(userToUpdate);
             console.log(updatedUser);
         }
@@ -58,19 +59,19 @@ const ProfileCard = (props) => {
     const onInputStateChange = (event)=>{
         const target = event.target;
         const inputName = target.name
-        console.log(inputName);
 
         const newUser = {
             ...user
         }
 
         if(inputName=== "streetAddress" || inputName === "city" || inputName === "zip"){
-            if(user.address){
-                newUser["address"][inputName] = target.value.trim();
+            if(user.address || user.hospitalAddress){
+                const addressType = user.role === "patient" ? "address" : "hospitalAddress"; 
+                newUser[addressType][inputName] = target.value.trim();
             }
         }
         else if(inputName === "dateOfBirth"){
-            newUser.dateOfBirth = new Date(Date.parse(target.value)+(300*60000));
+            newUser.dateOfBirth = new Date(target.value);
         }
         else{
             newUser[inputName]= target.value.trim();
@@ -87,8 +88,8 @@ const ProfileCard = (props) => {
             <img src={profilePicture} alt="Profile picture"/>
             <Stack direction='vertical' gap={1} className="justify-content-center align-items-center">
                 <p><b>{user.name}</b></p>
-                <p>{titleCase(user.subscription + " subscriber")}</p>
-                <p>{user.address.city + ", " + user.address.zip}</p>
+                <p>{user.role === "patient" ? titleCase(user.subscription + " subscriber") : titleCase(user.hospitalName)}</p>
+                <p>{user.role === "patient" ? user.address.city + ", " + user.address.zip : user.hospitalAddress.city+ ", "+ user.hospitalAddress.zip}</p>
             </Stack>
         </Stack>
         <Stack direction="vertical" gap={3} className="justify-content-between summarySection">
@@ -211,7 +212,7 @@ const ProfileCard = (props) => {
                         inputVisible.city 
                         ?
                         <>
-                            <Form.Control type="text" name="city" placeholder="Enter city" defaultValue={user.address? user.address.city : user.hospitalAddress.city} onChange={onInputStateChange} pattern={"^[a-zA-Z]{4,}$"}/>
+                            <Form.Control type="text" name="city" placeholder="Enter city" defaultValue={user.address? user.address.city : user.hospitalAddress.city} onChange={onInputStateChange} pattern={"^[a-z-A-Z ]{4,}$"}/>
                             <Form.Control.Feedback type="invalid">
                                 Please enter a valid city name
                             </Form.Control.Feedback>

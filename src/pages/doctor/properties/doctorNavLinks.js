@@ -26,7 +26,7 @@ export const doctorNavLinks = [
         icon: <FontAwesomeIcon icon={faUser} />
     },
     {
-        name: "logout",
+        name: "Logout",
         url: "/logout",
         icon: <FontAwesomeIcon icon={faRightFromBracket} />
     }
