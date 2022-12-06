@@ -58,14 +58,6 @@ const Room = ({ roomName, token, handleLogout }) => {
         )}
       </div>
       <div className="remote-participants">
-        {room ? (
-          <Participant
-            key={room.localParticipant.sid}
-            participant={room.localParticipant}
-          />
-        ) : (
-          ''
-        )}
         {remoteParticipants}
         <Button style={{width: "100%"}} onClick={handleLogout} variant="danger">End call</Button>
       </div>

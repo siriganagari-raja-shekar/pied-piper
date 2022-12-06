@@ -50,6 +50,7 @@ const BookAppointments = () => {
     useEffect(() => {
         populateData()
     }, [])
+    
     return (
         <Stack id="book-appointment-container" direction='horizontal' gap={3}>
             <NavBar links={links} />
