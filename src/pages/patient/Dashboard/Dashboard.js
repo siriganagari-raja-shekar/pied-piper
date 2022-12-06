@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faTemperatureHalf, faDroplet, faHeartPulse, faLungs
 } from '@fortawesome/free-solid-svg-icons'
-import Profile from '../../../components/patient/Dashboard/Profile/Profile'
+import ProfileMeds from '../../../components/patient/Dashboard/ProfileMeds/ProfileMeds'
 import StatsPanel from '../../../components/patient/Dashboard/StatsPanel/StatsPanel'
 import Vitals from '../../../components/patient/Dashboard/Vitals/Vitals'
 import { Stack } from 'react-bootstrap'
@@ -92,9 +92,10 @@ export const Dashboard = () => {
                         </Stack>
                     </Stack>
                 </Stack>
-                <Profile name={user.name}
+                <ProfileMeds name={user.name}
                     mailid={user.email}
                     dob={user.dateOfBirth}
+                    user={user}
                     meds={lastAppointment.prescription.meds}
                 />
             </Stack>
