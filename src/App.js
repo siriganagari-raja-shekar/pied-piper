@@ -15,6 +15,8 @@ import BookAppointments from './pages/patient/BookAppointments/BookAppointments'
 import DoctorRoutes from './authentication/DoctorRoutes';
 import DoctorDashboard from './pages/doctor/Dashboard/DoctorDashboard';
 import PatientProfile from './pages/patient/PatientProfile/PatientProfile';
+import ManageAppointments from './pages/doctor/ManageAppointments/ManageAppointments';
+
 
 const App = () => {
   return (
@@ -31,7 +33,8 @@ const App = () => {
           <Route element={<Logout />} path="/logout" />
         </Route>
         <Route element={<DoctorRoutes />}>
-          <Route element={<DoctorDashboard />} path="/doctor/dashboard" />
+            <Route element={<DoctorDashboard />} path="/doctor/dashboard" />
+            <Route element={<ManageAppointments />} path='/doctor/manageAppointment/:id' />
         </Route>
       </Routes>
     </BrowserRouter>
