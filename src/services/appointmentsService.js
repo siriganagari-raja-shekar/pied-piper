@@ -246,3 +246,13 @@ export const getNextAppointmentByDoctorId = async (id) => {
     })
     return nextAppointment;
 }
+
+export const getAppointmentById = async (id)=>{
+    const appointments = await getAppointmentsByDoctorID(id)
+    let appointment = appointments.find((appointment) => {
+        if(id === appointment.id)
+            return appointment
+    })
+    console.log(appointment)
+    return appointment
+}
