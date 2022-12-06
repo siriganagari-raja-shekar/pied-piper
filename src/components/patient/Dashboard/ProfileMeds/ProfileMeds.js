@@ -2,6 +2,7 @@ import React from 'react'
 import './ProfileMeds.scss'
 import { Stack } from 'react-bootstrap'
 import moment from 'moment'
+import { formatDate } from '../../../../services/utils'
 
 const ProfileMeds = (props) => {
     return (
@@ -12,7 +13,7 @@ const ProfileMeds = (props) => {
                 </div>
                 <Stack id="details" direction='vertical'>
                     <h4>{props.name}</h4>
-                    <p>Born on <b>{moment(props.dob).format("Do MMM, YY")}</b></p>
+                    <p>Born on <b>{formatDate(props.dob,"Do MMM, YY")}</b></p>
                     <p>{props.mailid}</p>
                 </Stack>
             </Stack>

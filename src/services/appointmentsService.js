@@ -19,12 +19,13 @@ export const getUpcomingAppointments = async () => {
         const appointments = response.data
         let upcomingAppointments = []
         appointments.map((appointment) => {
-            const appointmentTime = moment(appointment.time)
-            const today = moment()
-            if (appointmentTime.isAfter(today)) {
+            const appointmentTime = new Date(appointment.time);
+            const today = new Date();
+            if (appointmentTime > today) {
                 upcomingAppointments.push(appointment)
             }
         })
+        upcomingAppointments.sort((a,b)=> new Date(a.time) < new Date(b.time) ? -1 : 1);
         return upcomingAppointments;
     } catch (e) {
         console.log(e)
@@ -48,12 +49,15 @@ export const getAppointmentHistory = async () => {
         const appointments = response.data
         let appointmentsHistory = []
         appointments.map((appointment) => {
-            const appointmentTime = moment(appointment.time)
-            const today = moment()
-            if (appointmentTime.isBefore(today)) {
+            const appointmentTime = new Date(appointment.time);
+            const today = new Date();
+            if (appointmentTime < today) {
+                if(appointment.labs.length > 0)
+                    appointment.labs.sort((a,b)=> new Date(a.time) < new Date(b.time) ? 1 : -1)
                 appointmentsHistory.push(appointment)
             }
         })
+        appointmentsHistory.sort((a,b)=> new Date(a.time) < new Date(b.time) ? 1 : -1);
         return appointmentsHistory;
     } catch (e) {
         console.log(e)
@@ -175,10 +179,11 @@ export const getTodaysAppointmentsByDoctorID= async (id) => {
         const appointments = await getAppointmentsByDoctorID(id)
         let todaysAppointments = []
         appointments.map((appointment) => {
-            const appointmentTime = moment(appointment.time)
-            const today = moment()
-            const tomorrow= moment().add(1, 'days').calendar(); 
-            if (appointmentTime.isAfter(today) && appointmentTime.isBefore(tomorrow)) {
+            const appointmentTime = new Date(appointment.time);
+            const today = new Date();
+            const tomorrow= new Date();
+            tomorrow.setDate(tomorrow.getDate()+1);
+            if (appointmentTime > today && appointmentTime < tomorrow) {
                 todaysAppointments.push(appointment)
             }
         })
@@ -193,9 +198,9 @@ export const getDoctorAppointmentHistory = async (id) => {
         const appointments = await getAppointmentsByDoctorID(id)
         let appointmentsHistory = []
         appointments.map((appointment) => {
-            const appointmentTime = moment(appointment.time)
-            const today = moment()
-            if (appointmentTime.isBefore(today)) {
+            const appointmentTime = new Date(appointment.time);
+            const today = new Date();
+            if (appointmentTime < today) {
                 appointmentsHistory.push(appointment)
             }
         })
@@ -230,9 +235,9 @@ export const getDoctorStats = async (id) => {
 export const getNextAppointmentByDoctorId = async (id) => {
     const appointments = await getAppointmentsByDoctorID(id)
     let nextAppointment = appointments.find((appointment) => {
-        const appointmentTime = moment(appointment.time)
-        const today = moment()
-        if (appointmentTime.isAfter(today)) {
+        const appointmentTime = new Date(appointment.time);
+        const today = new Date();
+        if (appointmentTime > today) {
             return appointment
         }
     })
