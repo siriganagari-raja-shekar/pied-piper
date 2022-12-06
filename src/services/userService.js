@@ -48,7 +48,7 @@ export const getUserFromLocalStorage = () => {
 
 export const updateUser = async (user) =>{
     try{
-        const response = await axios.put(`${process.env.REACT_APP_USERS}/${user.id}`,user);
+        const response = await axios.put(`${process.env.REACT_APP_USERS}${user.id}`,user);
         localStorage.setItem("user", JSON.stringify(response.data));
         return response.data;
     }

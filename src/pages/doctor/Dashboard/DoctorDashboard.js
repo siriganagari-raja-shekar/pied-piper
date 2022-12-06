@@ -9,7 +9,8 @@ import StatsPanel from '../../../components/commonComponents/StatsPanel/StatsPan
 import {
   getDoctorAppointmentHistory,
   getDoctorStats,
-  getInPersonConsultationsByDoctorID
+  getInPersonConsultationsByDoctorID,
+  getTodaysAppointmentsByDoctorID
 } from '../../../services/appointmentsService'
 import { useState } from 'react'
 import { useEffect } from 'react'
@@ -23,16 +24,18 @@ const DoctorDashboard = () => {
   const user = getStoredUser()
   const [consultationsStats, setConsultationsStats] = useState({})
   const [inPersonConsultations, setInPersonConsultations] = useState([])
+  const [todaysAppointments, setTodaysAppointments] = useState([]);
   const [appointmentHistory, setAppointmentHistory] = useState([]);
 
   const populateData = async () => {
     const doctorStats = await getDoctorStats(user.id)
     const inPersonAppointments = await getInPersonConsultationsByDoctorID(user.id)
     const pastAppointments = await getDoctorAppointmentHistory(user.id)
-    console.log(pastAppointments)
+    const todaysAppointmentsTemp = await getTodaysAppointmentsByDoctorID(user.id);
     setConsultationsStats(doctorStats)
     setInPersonConsultations(inPersonAppointments)
     setAppointmentHistory(pastAppointments)
+    setTodaysAppointments(todaysAppointmentsTemp)
   }
 
   useEffect(() => {
@@ -68,8 +71,8 @@ const DoctorDashboard = () => {
           <Stack direction='vertical' gap={3}>
             <StatsPanel stats={stats} />
             <Stack direction='horizontal' gap={3}>
-              <Appointments appointments={inPersonConsultations}  limit="3" />
-              <NextPatient />
+              <Appointments appointments={todaysAppointments}  limit="3" />
+              <NextPatient appointments={todaysAppointments}/>
             </Stack>
             <Stack direction='vertical' id="patientTable">
               <RecentPatients appointmentHistory={appointmentHistory} />

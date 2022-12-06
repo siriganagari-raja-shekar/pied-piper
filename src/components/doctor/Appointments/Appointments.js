@@ -17,17 +17,17 @@ const Appointment = ({ appointment, videoCallModalDisplay, setVideoCallModalDisp
                     <img src={profile} alt="profile" style={{ width: "60px", height: '60px', borderRadius: '50%' }} />
                     <Stack direction="vertical" className='justify-content-center'>
                         <p id="username"><b>{appointment.patient.name}</b></p>
-                        <p>Male, {formatDate(appointment.patient.dateOfBirth, "Do MMM YYYY")} </p>
+                        <p>Male, {"Age: "+ (new Date().getFullYear() - new Date(appointment.patient.dateOfBirth).getFullYear())} </p>
                     </Stack>
                 </Stack>
-                <Stack direction="vertical" className='justify-content-center flex-grow-0'>
+                <Stack direction="vertical" className='align-items-end justify-content-center flex-grow-0'>
                     {appointment.appointmentType === 'in-person'&&
                         <p>In person</p>
                     }
                     {appointment.appointmentType === 'video'&&
                         <p>Video</p>
                     }
-                    <h5><b>{formatDate(appointment.time, "H:mm")}</b></h5>
+                    <h5><b>{formatDate(appointment.time, "h:mm A")}</b></h5>
                 </Stack>
             </Stack>
         </Stack>

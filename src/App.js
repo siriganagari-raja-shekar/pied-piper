@@ -15,6 +15,7 @@ import BookAppointments from './pages/patient/BookAppointments/BookAppointments'
 import DoctorRoutes from './authentication/DoctorRoutes';
 import DoctorDashboard from './pages/doctor/Dashboard/DoctorDashboard';
 import PatientProfile from './pages/patient/PatientProfile/PatientProfile';
+import DoctorProfile from './pages/doctor/DoctorProfile/DoctorProfile';
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
         </Route>
         <Route element={<DoctorRoutes />}>
           <Route element={<DoctorDashboard />} path="/doctor/dashboard" />
+          <Route element={<DoctorProfile />} path="/doctor/profile" />
         </Route>
       </Routes>
     </BrowserRouter>

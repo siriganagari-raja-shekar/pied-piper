@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import { Stack } from 'react-bootstrap';
 import NavBar from '../../../components/commonComponents/NavBar/NavBar';
-import { patientNavLInks } from '../Properties/patientNavLinks';
+import { doctorNavLinks } from '../properties/doctorNavLinks';
 import * as userService from './../../../services/userService.js';
 import ProfileCard from '../../../components/commonComponents/ProfileCard/ProfileCard';
 
 
-const PatientProfile = () => {
+const DoctorProfile = () => {
 
     const [user, setUser] = useState(null);
 
@@ -20,7 +20,7 @@ const PatientProfile = () => {
     return (
         
         <Stack id="dashboard" direction='horizontal' gap={3} className='justify-content-between'>
-            <NavBar links={patientNavLInks} />
+            <NavBar links={doctorNavLinks} />
             {
                 user
                 &&
@@ -35,4 +35,4 @@ const PatientProfile = () => {
 }
 
 
-export default PatientProfile;
+export default DoctorProfile;
