@@ -34,8 +34,9 @@ export const Dashboard = () => {
         const vitals = await getLastAppointment()
         const pastAppointments = await getAppointmentHistory()
         const tests = await getAllLabTests()
-
-        setLastAppointment(vitals)
+        
+        if(vitals)
+            setLastAppointment(vitals)
         setUpcomingAppointments(appointments)
         setAppointmentHistory(pastAppointments)
         setLabTests(tests)
@@ -50,28 +51,28 @@ export const Dashboard = () => {
         {
             name: "Heart rate",
             logo: <FontAwesomeIcon icon={faHeartPulse} />,
-            value: lastAppointment.vitals.pulse,
+            value: lastAppointment.vitals.pulse ?  lastAppointment.vitals.pulse : "-",
             measure: " bpm",
             desc: "Pulse is the most important physiological indicator"
         },
         {
             name: "Temperature",
             logo: <FontAwesomeIcon icon={faTemperatureHalf} />,
-            value: lastAppointment.vitals.temperature,
+            value: lastAppointment.vitals.temperature ? lastAppointment.vitals.temperature : "-",
             measure: " F",
             desc: "Temperature below 35 Celsius is very dangerous"
         },
         {
             name: "Blood Pressure",
             logo: <FontAwesomeIcon icon={faDroplet} />,
-            value: lastAppointment.vitals.bloodPressure,
+            value: lastAppointment.vitals.bloodPressure ?  lastAppointment.vitals.bloodPressure :"-",
             measure: "",
             desc: "Blood pressure can rise and fall several times a day"
         },
         {
             name: "SpO2",
             logo: <FontAwesomeIcon icon={faLungs} />,
-            value: lastAppointment.vitals.bloodOxygenLevel,
+            value: lastAppointment.vitals.bloodOxygenLevel? lastAppointment.vitals.bloodOxygenLevel:"-" ,
             measure: " %",
             desc: "Blood pressure can rise and fall several times a day"
         }

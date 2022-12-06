@@ -1,8 +1,11 @@
 import "./Header.scss";
 import { useEffect } from 'react';
 import { Outlet, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         document.querySelectorAll(".nav-link").forEach(link => {
@@ -37,9 +40,8 @@ const Header = () => {
                                 <a className="nav-link" href="#">Contact Us</a>
                             </li>
                         </ul>
-                        <a className="nav-link p-sm-2" href="#">Sign Up</a>
-                        <button className="btn btn-primary mx-sm-3 mt-3 mt-sm-0 login-btn fs-5">
-                            Login
+                        <button className="btn btn-primary mx-sm-3 mt-3 mt-sm-0 login-btn fs-5" onClick={()=> navigate("/signin")}>
+                            Sign in
                         </button>
                     </div>
                 </div>
