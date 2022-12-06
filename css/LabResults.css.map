@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/Components/Patient/Dashboard/LabResults/LabResults.scss","LabResults.css"],"names":[],"mappings":"AAAA;EACI,iBAAA;EACA,iCAAA;EACA,oBAAA;EACA,YAAA;ACCJ;ADEQ;EACI,eAAA;ACAZ;ADII;EACI,kBAAA;EACA,0BAAA;ACFR;ADIQ;EACI,cAAA;ACFZ;;ADMA;EACI,uBAAA;EACA,cAAA;EACA,oBAAA;ACHJ;ADKI;EACI,SAAA;ACHR","file":"LabResults.css"}

@@ -1,0 +1,14 @@
+#patientTable {
+    background-color: white;
+    padding: 1em;
+    border-radius: 0.5em;
+    box-shadow: 2px 1px 5px -3px #000;
+}
+
+tr{
+    background-color: white;
+
+    &:nth-child(even) {
+        background-color: #e0e6f1;
+    }
+}

@@ -10,7 +10,7 @@ import { useState } from 'react'
 import VideoChat from '../../../twilio/VideoChat'
 
 
-const UpcomingAppointment = ({ appointment, videoCallModalDisplay, setVideoCallModalDisplay }) => {
+const UpcomingAppointment = ({ appointment, videoCallModalDisplay, setVideoCallModalDisplay, setVideoAppointmentId }) => {
     return (
         <Stack key={appointment.id} direction='vertical' className='appointment'>
             <span className="backgroundClock"><FontAwesomeIcon icon={faClock} /></span>
@@ -33,7 +33,10 @@ const UpcomingAppointment = ({ appointment, videoCallModalDisplay, setVideoCallM
             </Stack>
             {
                 appointment.appointmentType === 'video' &&
-                <Button onClick={()=> setVideoCallModalDisplay(!videoCallModalDisplay)}>Connect to call</Button>
+                <Button onClick={() => {
+                    setVideoCallModalDisplay(!videoCallModalDisplay)
+                    setVideoAppointmentId(appointment.id)
+                }}>Connect to call</Button>
             }
         </Stack>
     )
@@ -42,7 +45,12 @@ const UpcomingAppointment = ({ appointment, videoCallModalDisplay, setVideoCallM
 const UpcomingAppointments = ({ appointments }) => {
     let count = 0
     const [lgShow, setLgShow] = useState(false);
-    const [videoCallModalDisplay, setVideoCallModalDisplay]= useState(false);
+    const [videoCallModalDisplay, setVideoCallModalDisplay] = useState(false);
+    const [videoAppointmentId, setVideoAppointmentId] = useState(null)
+
+    const onClickHandler = () => {
+
+    }
 
     return (
         <>
@@ -56,7 +64,13 @@ const UpcomingAppointments = ({ appointments }) => {
                         count++
                         if (count <= 2) {
                             return (
-                                <UpcomingAppointment key={appointment.id} appointment={appointment} videoCallModalDisplay={videoCallModalDisplay} setVideoCallModalDisplay={setVideoCallModalDisplay} />
+                                <UpcomingAppointment
+                                    key={appointment.id}
+                                    appointment={appointment}
+                                    videoCallModalDisplay={videoCallModalDisplay}
+                                    setVideoCallModalDisplay={setVideoCallModalDisplay}
+                                    setVideoAppointmentId={setVideoAppointmentId}
+                                />
                             )
                         }
                     })
@@ -78,7 +92,7 @@ const UpcomingAppointments = ({ appointments }) => {
                         {
                             appointments.map((appointment) => {
                                 return (
-                                    <UpcomingAppointment key={appointment.id} appointment={appointment} videoCallModalDisplay={videoCallModalDisplay} setVideoCallModalDisplay={setVideoCallModalDisplay}/>
+                                    <UpcomingAppointment key={appointment.id} appointment={appointment} videoCallModalDisplay={videoCallModalDisplay} setVideoCallModalDisplay={setVideoCallModalDisplay} />
                                 )
                             })
                         }
@@ -86,20 +100,20 @@ const UpcomingAppointments = ({ appointments }) => {
                 </Modal.Body>
             </Modal>
             <Modal
-                size="lg"
+                size="xl"
                 show={videoCallModalDisplay}
                 onHide={() => setVideoCallModalDisplay(false)}
-                aria-labelledby="Twillio video Call"
+                aria-labelledby="Video consultation"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title id="Twilio video call">Twilio Video Call</Modal.Title>
+                    <Modal.Title id="Twilio-video-call">Video consultation</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Stack direction='vertical'>
-                        <VideoChat />
+                        <VideoChat appointment={videoAppointmentId}/>
                     </Stack>
                 </Modal.Body>
-            </Modal>
+            </Modal>                   
         </>
     )
 }

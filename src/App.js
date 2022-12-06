@@ -13,7 +13,7 @@ import Signin from './authentication/Signin'
 import Logout from './authentication/Logout';
 import BookAppointments from './pages/patient/BookAppointments/BookAppointments';
 import DoctorRoutes from './authentication/DoctorRoutes';
-import DoctorDashboard from './pages/doctor/DoctorDashboard';
+import DoctorDashboard from './pages/doctor/Dashboard/DoctorDashboard';
 import PatientProfile from './pages/patient/PatientProfile/PatientProfile';
 
 const App = () => {
@@ -23,6 +23,7 @@ const App = () => {
         <Route path="/signin" element={<Signin />}></Route>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="subscribe" element={<SubscribePage />}></Route>
+        <Route element={<Logout />} path="/logout" />
         <Route element={<PatientRoutes />}>
           <Route element={<Dashboard />} path="/dashboard" />
           <Route element={<BookAppointments />} path='/appointments' />

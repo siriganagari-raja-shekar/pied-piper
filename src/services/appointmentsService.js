@@ -119,7 +119,104 @@ export const createAppointment = async (datetime, doctorid, appointmentType) => 
     try {
         await axios(config)
         return true
-    } catch(e){
+    } catch (e) {
         console.log(e)
     }
+}
+
+export const getAppointmentsByDoctorID = async (id) => {
+    var config = {
+        method: 'get',
+        url: process.env.REACT_APP_APPOINTMENTS,
+        params: {
+            doctorID: getStoredUser().id
+        },
+        headers: {
+            'Authorization': `Bearer ${getActiveToken()}`
+        }
+    };
+
+    try {
+        const response = await axios(config)
+        return response.data;
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export const getVideoConsultationsByDoctorID = async () => {
+    const appointments = await getAppointmentsByDoctorID()
+
+    const videoConsultations = []
+
+    appointments.map(appointment => {
+        if (appointment.appointmentType === "video")
+            videoConsultations.push(appointment)
+    })
+
+    return videoConsultations
+}
+
+export const getInPersonConsultationsByDoctorID = async () => {
+    const appointments = await getAppointmentsByDoctorID()
+
+    const inPersonConsultations = []
+
+    appointments.map(appointment => {
+        if (appointment.appointmentType === "in-person")
+            inPersonConsultations.push(appointment)
+    })
+
+    return inPersonConsultations
+}
+
+export const getDoctorAppointmentHistory = async (id) => {
+    try {
+        const appointments = await getAppointmentsByDoctorID(id)
+        let appointmentsHistory = []
+        appointments.map((appointment) => {
+            const appointmentTime = moment(appointment.time)
+            const today = moment()
+            if (appointmentTime.isBefore(today)) {
+                appointmentsHistory.push(appointment)
+            }
+        })
+        return appointmentsHistory;
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export const getDoctorStats = async (id) => {
+    const appointments = await getAppointmentsByDoctorID(id)
+    let videoConsultations = 0
+    let inPersonConsultations = 0
+
+    appointments.map(appointment => {
+        if (appointment.appointmentType === "video")
+            videoConsultations++;
+
+        if (appointment.appointmentType === "in-person")
+            inPersonConsultations++;
+    })
+    const response = {
+        "videoConsultations": videoConsultations,
+        "inPersonConsultations": inPersonConsultations,
+        "totalConsultations": inPersonConsultations + videoConsultations
+    }
+
+    return response
+}
+
+
+export const getNextAppointmentByDoctorId = async (id) => {
+    const appointments = await getAppointmentsByDoctorID(id)
+    let nextAppointment = appointments.find((appointment) => {
+        const appointmentTime = moment(appointment.time)
+        const today = moment()
+        if (appointmentTime.isAfter(today)) {
+            return appointment
+        }
+    })
+    return nextAppointment;
 }

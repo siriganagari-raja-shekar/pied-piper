@@ -4,8 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faTemperatureHalf, faDroplet, faHeartPulse, faLungs
 } from '@fortawesome/free-solid-svg-icons'
+import StatsPanel from '../../../components/commonComponents/StatsPanel/StatsPanel'
 import ProfileMeds from '../../../components/patient/Dashboard/ProfileMeds/ProfileMeds'
-import StatsPanel from '../../../components/patient/Dashboard/StatsPanel/StatsPanel'
+
 import Vitals from '../../../components/patient/Dashboard/Vitals/Vitals'
 import { Stack } from 'react-bootstrap'
 import UpcomingAppointments from '../../../components/patient/Dashboard/UpcomingAppointments/UpcomingAppointments'
@@ -14,10 +15,11 @@ import LabResults from '../../../components/patient/Dashboard/LabResults/LabResu
 import { getStoredUser } from '../../../services/authService'
 import { getAllLabTests, getAppointmentHistory, getLastAppointment, getUpcomingAppointments } from '../../../services/appointmentsService'
 import { patientNavLInks } from '../Properties/patientNavLinks'
+import { faCalendarCheck } from '@fortawesome/free-regular-svg-icons'
+import { faVideo, faMicrophone } from '@fortawesome/free-solid-svg-icons'
 import './Dashboard.scss'
 
 export const Dashboard = () => {
-    
     const [upcomingAppointments, setUpcomingAppointments] = useState([])
     const [lastAppointment, setLastAppointment] = useState({
         vitals: {},
@@ -27,6 +29,31 @@ export const Dashboard = () => {
     })
     const [appointmentHistory, setAppointmentHistory] = useState([])
     const [labTests, setLabTests] = useState([])
+
+    const user= getStoredUser()
+    const stats=[
+        {
+            statId: "appointmentStat",
+            statIcon: <FontAwesomeIcon icon={faCalendarCheck} />,
+            statCount: user.appointmentsLeft,
+            statName: "Appointemnts left",
+            buttonText: "Make an appointment"
+        },
+        {
+            statId: "videoStat",
+            statIcon: <FontAwesomeIcon icon={faVideo} />,
+            statCount: user.videoConsultationsLeft,
+            statName: "Video consultations left",
+            buttonText: "Make a video consultation"
+        },
+        {
+            statId: "labTestStat",
+            statIcon: <FontAwesomeIcon icon={faMicrophone} />,
+            statCount: user.labTestsLeft,
+            statName: "Free lab tests left",
+            buttonText: "Book a lab test"
+        }
+    ]
 
 
     const populateData = async () => {
@@ -46,7 +73,6 @@ export const Dashboard = () => {
         populateData()
     }, [])
 
-    const user = getStoredUser()
     const vitals = [
         {
             name: "Heart rate",
@@ -83,7 +109,7 @@ export const Dashboard = () => {
             <NavBar links={patientNavLInks} />
             <Stack direction='horizontal' className='p-3' gap={3}>
                 <Stack direction='vertical' gap={3} className='justify-content-between'>
-                    <StatsPanel />
+                    <StatsPanel stats={stats}/>
                     <Vitals vitals={vitals} />
                     <Stack direction='horizontal' gap={3}>
                         <UpcomingAppointments appointments={upcomingAppointments} />
