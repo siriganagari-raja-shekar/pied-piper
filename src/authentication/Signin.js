@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Form, Button, Alert, Card, Stack } from "react-bootstrap";
 import { authenticateUser } from "../services/authService";
-
+import {useEffect} from 'react';
+import * as userService from './../services/userService';
+import { useNavigate } from "react-router-dom";
 
 function Signin() {
   const [userData, setUserData] = useState({ username: "", password: "" });
   const [errorMessage, setErrorMessage] = useState({ value: "" });
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     setUserData((prevState) => {
@@ -15,6 +18,16 @@ function Signin() {
       };
     });
   };
+
+  useEffect(()=>{
+      const loggedInUser = userService.getUserFromLocalStorage();
+      if(loggedInUser){
+        if(loggedInUser.role === "patient")
+          navigate("/dashboard");
+        else
+          navigate("/doctor/dashboard");
+      }
+  })
 
   const handleSubmit = async (e) => {
     
