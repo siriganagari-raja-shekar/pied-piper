@@ -26,11 +26,13 @@ const SubscribeForm = () => {
             passwordRegex: "^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$" ,
             phoneNumberRegex: "^\\d{3}-\\d{3}-\\d{4}$",
             streetAddressRegex: "^\\d{1,} [a-zA-Z0-9\\s]+$",
-            cityRegex: "^[a-zA-Z]{4,}$",
+            cityRegex: "^[a-z-A-Z ]{4,}$",
             zipcodeRegex: "^\\d{5}",
             dateOfBirthRegex: "^\\d{2}/\\d{2}/\\d{4}",
             hospitalNameRegex: "^\\w{5,}$",
-            specializationRegex: "^\\w{5,}$"
+            specializationRegex: "^\\w{5,}$",
+            heightRegex: "^\\d{3}$",
+            weightRegex: "^\\d{2,3}$"
         }
 
         for (const key in inputRegex) {
@@ -106,6 +108,7 @@ const SubscribeForm = () => {
 
             userObject.dateOfBirth = JSON.stringify(new Date(Date.parse(document.querySelector("#dateOfBirth").value)+(300*60000)));
             userObject.phoneNumber = document.querySelector("#phoneNumber").value.trim();
+            userObject.sex = document.querySelector("input[name='sex']:checked").value;
 
             userObject.role = userRole;
             const addressObject = {}
@@ -117,6 +120,8 @@ const SubscribeForm = () => {
                 userObject.address = addressObject;
                 userObject.subscriptionType = document.querySelector("input[name='subscriptionType']:checked").value;
                 userObject.subscription = document.querySelector("#membershipPlanSelect").value;
+                userObject.height = document.querySelector("#height").value;
+                userObject.weight = document.querySelector("#weight").value;
             }
             else{
                 userObject.hospitalAddress = addressObject;
@@ -215,9 +220,26 @@ const SubscribeForm = () => {
                         </div>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="patient" className="mx-2 ml-0">User Role: </label>
+                        <label htmlFor="male" className="ml-0">Sex: </label>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" name="userRole" id="patient"
+                            <input className="form-check-input mx-1" type="radio" name="sex" id="male"
+                                value="male"  required defaultChecked/>
+                            <label className="form-check-label" htmlFor="male">Male</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio" name="sex" id="female" value="female"/>
+                            <label className="form-check-label" htmlFor="female">Female</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio" name="sex" id="other" value="other"/>
+                            <label className="form-check-label" htmlFor="other">Other</label>
+                        </div>
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="patient" className="ml-0">User Role: </label>
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input mx-1" type="radio" name="userRole" id="patient"
                                 value="patient" onClick={clickHandlerForUserRole} required defaultChecked/>
                             <label className="form-check-label" htmlFor="patient">Patient</label>
                         </div>
@@ -260,6 +282,26 @@ const SubscribeForm = () => {
                         userRole === "patient"
                         &&
                         <>
+                            <div className="form-group">
+                                <label htmlFor="height">Height*</label>
+                                <input type="text" className="form-control" id="height" placeholder="Please enter height in cm" />
+                                <div className="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div className="invalid-feedback">
+                                    Please enter your height in cm
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="weight">Weight*</label>
+                                <input type="text" className="form-control" id="weight" placeholder="Please enter weight in kg" />
+                                <div className="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div className="invalid-feedback">
+                                    Please enter your weight in kg
+                                </div>
+                            </div>
                             <div className="form-group">
                                 <label htmlFor="individualMembership" className="mx-2 ml-0">Subscription Type: </label>
                                 <div className="form-check form-check-inline">
