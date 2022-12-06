@@ -1,30 +1,30 @@
 import axios from 'axios';
 import React, { useState, useCallback } from 'react';
-import Lobby from './Lobby';
+import { useEffect } from 'react';
+import { getStoredUser } from '../../services/authService';
 import Room from './Room';
 
-const VideoChat = () => {
+const VideoChat = ({ appointment }) => {
     const [username, setUsername] = useState('');
     const [roomName, setRoomName] = useState('');
     const [token, setToken] = useState(null);
 
-    const handleUsernameChange = useCallback(event => {
-        setUsername(event.target.value);
-    }, []);
-    
-    const handleRoomNameChange = useCallback(event => {
-        setRoomName(event.target.value);
-    }, []); 
-
-    const handleSubmit = useCallback(async event => {
-        event.preventDefault();
+    const createToken = async () => {
+        const storedUserName = getStoredUser()
+        setUsername(storedUserName.name)
+        setRoomName(appointment)
+        console.log(storedUserName.name + "\t" + appointment)
         const res = await axios.post("https://pied-piper-twilio-2284-dev.twil.io/token", {
-            identity: username,
-            room: roomName
-        });                                     
+            identity: storedUserName.name,
+            room: appointment
+        });
         const data = res.data;
         setToken(data.accessToken);
-    }, [username, roomName]);
+    }
+
+    useEffect(() => {
+        createToken()
+    }, [])
 
     const handleLogout = useCallback(event => {
         setToken(null);
@@ -32,19 +32,8 @@ const VideoChat = () => {
 
     let render;
     if (token) {
-        console.log(token);
         render = (
             <Room roomName={roomName} token={token} handleLogout={handleLogout} />
-        );
-    } else {
-        render = (
-        <Lobby
-            username={username}
-            roomName={roomName}
-            handleUsernameChange={handleUsernameChange}
-            handleRoomNameChange={handleRoomNameChange}
-            handleSubmit={handleSubmit}
-        />
         );
     }
     return render;

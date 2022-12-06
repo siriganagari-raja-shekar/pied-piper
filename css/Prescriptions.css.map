@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/Components/Patient/Dashboard/Prescriptions/Prescriptions.scss","Prescriptions.css"],"names":[],"mappings":"AAAA;EACI,iBAAA;EACA,iCAAA;EACA,oBAAA;EACA,YAAA;ACCJ;ADCI;EACI,kBAAA;EACA,0BAAA;ACCR;ADCQ;EACI,cAAA;ACCZ;ADIQ;EACI,eAAA;ACFZ;;ADMA;EACI,uBAAA;EACA,cAAA;EACA,oBAAA;ACHJ;ADKI;EACI,SAAA;ACHR","file":"Prescriptions.css"}

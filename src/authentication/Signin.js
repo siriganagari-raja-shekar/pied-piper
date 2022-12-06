@@ -17,6 +17,7 @@ function Signin() {
   };
 
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
     //if username or password field is empty, return error message
     if (userData.username === "" || userData.password === "") {
@@ -25,7 +26,12 @@ function Signin() {
       });
     } else if (await authenticateUser(userData.username, userData.password)) {
       //Signin Success
-      window.location.pathname = "/dashboard";
+      const user= JSON.parse(localStorage.getItem("user"))
+      if (user.role === 'patient')
+        window.location.pathname = "/dashboard";
+
+      if (user.role === 'doctor')
+        window.location.pathname = "/doctor/dashboard";
     } else {
       //If credentials entered is invalid
       setErrorMessage({ value: "Invalid username/password" });
@@ -34,8 +40,8 @@ function Signin() {
 
   return (
     <>
-      <Stack className='align-items-center justify-content-center' style={{height: '100%', backgroundColor: "#e8e8e8"}}>
-        <Card style={{width: '30%'}}>
+      <Stack className='align-items-center justify-content-center' style={{ height: '100%', backgroundColor: "#e8e8e8" }}>
+        <Card style={{ width: '30%' }}>
           <Card.Header><h3 className='text-center'>Sign in</h3></Card.Header>
           <Card.Body>
             {errorMessage.value && (

@@ -1,0 +1,23 @@
+.room {
+    position: relative;
+    width: 90%;
+    margin: auto;
+}
+
+.local-participant{
+    width: 100%;
+    video{
+        width: 100%;
+    }
+}
+.remote-participants {
+    width: 20%;
+    position: absolute;
+    bottom: 2%;
+    right: 2%;
+
+    video {
+        width: 100%;
+        border: 5px solid #3E65A7;
+    }
+}

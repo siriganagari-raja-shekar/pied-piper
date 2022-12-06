@@ -1,0 +1,51 @@
+#title {
+    svg {
+        font-size: 35px;
+        color: #223554;
+    }
+    h2{
+        color: #223554;
+        margin-left: 0.5em;
+    }
+}
+
+#upcomingAppointments {
+    padding: 1em;
+    box-shadow: 2px 1px 5px -3px #000;
+    border-radius: 0.5em;
+    background-color: white;
+    height: 100%;
+
+    p {
+        margin: 0;
+    }
+
+    .nav-link{
+        text-align: center;
+    }
+}
+
+.appointments{
+    padding: 1em;
+    border-radius: 0.5em;
+    background: #3e65a729;
+    &:hover{
+        background-color: #3E65A7;
+        color: white;
+        cursor: pointer;
+    }
+}
+
+.backgroundClock {
+    font-size: 7em;
+    position: absolute;
+    bottom: -30%;
+    right: -2%;
+    color: #223554;
+}
+
+.viewmore{
+    color: #223554;
+    text-decoration: underline;
+    text-align: center;
+}
