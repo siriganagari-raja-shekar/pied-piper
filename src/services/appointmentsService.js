@@ -42,7 +42,7 @@ export const getAppointmentHistory = async () => {
             'Authorization': `Bearer ${getActiveToken()}`
         }
     };
-
+    
     try {
         const response = await axios(config)
         const appointments = response.data
@@ -168,6 +168,24 @@ export const getInPersonConsultationsByDoctorID = async () => {
     })
 
     return inPersonConsultations
+}
+
+export const getTodaysAppointmentsByDoctorID= async (id) => {
+    try {
+        const appointments = await getAppointmentsByDoctorID(id)
+        let todaysAppointments = []
+        appointments.map((appointment) => {
+            const appointmentTime = moment(appointment.time)
+            const today = moment()
+            const tomorrow= moment().add(1, 'days').calendar(); 
+            if (appointmentTime.isAfter(today) && appointmentTime.isBefore(tomorrow)) {
+                todaysAppointments.push(appointment)
+            }
+        })
+        return todaysAppointments;
+    } catch (e) {
+        console.log(e)
+    }
 }
 
 export const getDoctorAppointmentHistory = async (id) => {

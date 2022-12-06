@@ -68,7 +68,7 @@ const DoctorDashboard = () => {
           <Stack direction='vertical' gap={3}>
             <StatsPanel stats={stats} />
             <Stack direction='horizontal' gap={3}>
-              <Appointments appointments={inPersonConsultations} type="in-person" limit="3" />
+              <Appointments appointments={inPersonConsultations}  limit="3" />
               <NextPatient />
             </Stack>
             <Stack direction='vertical' id="patientTable">

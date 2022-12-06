@@ -1,7 +1,5 @@
 import React from 'react'
 import { Stack, Button, Modal } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDoorOpen, faClock, faVideoCamera } from '@fortawesome/free-solid-svg-icons'
 import './Appointments.scss'
 import { NavLink } from 'react-router-dom'
 import { formatDate } from '../../../services/utils'

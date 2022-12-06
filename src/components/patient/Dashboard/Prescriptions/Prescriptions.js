@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './Prescriptions.scss'
 
-const Prescription = ({ prescription, doctor}) => {
+const Prescription = ({ prescription, doctor }) => {
     return (
         <Stack direction='horizontal' className='prescription'>
             <Stack direction='vertical'>
@@ -20,7 +20,7 @@ const Prescription = ({ prescription, doctor}) => {
 
 const Prescriptions = ({ appointmentHistory }) => {
     const [lgShow, setLgShow] = useState(false);
-    let count=0;
+    let count = 0;
     return (
         <>
             <Stack direction='vertical' gap={3} id='prescriptions'>
@@ -30,13 +30,13 @@ const Prescriptions = ({ appointmentHistory }) => {
                 </Stack>
                 {
                     appointmentHistory.map((appointment) => {
-                        count++
-                        if(count <=2){
+                        if (count < 2 && appointment.prescription) {
+                            count++
                             return (
-                                <Prescription key={appointment.prescription.id} 
-                                            prescription={appointment.prescription} 
-                                            doctor={appointment.doctor}
-                                        />
+                                <Prescription key={appointment.prescription.id}
+                                    prescription={appointment.prescription}
+                                    doctor={appointment.doctor}
+                                />
                             )
                         }
                     })
@@ -57,12 +57,14 @@ const Prescriptions = ({ appointmentHistory }) => {
                     <Stack direction='vertical' gap={3}>
                         {
                             appointmentHistory.map((appointment) => {
-                                return (
-                                    <Prescription key={appointment.prescription.id} 
-                                            prescription={appointment.prescription} 
+                                if (appointment.prescription) {
+                                    return (
+                                        <Prescription key={appointment.prescription.id}
+                                            prescription={appointment.prescription}
                                             doctor={appointment.doctor}
                                         />
-                                )
+                                    )
+                                }
                             })
                         }
                     </Stack>
