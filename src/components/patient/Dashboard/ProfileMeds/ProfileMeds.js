@@ -1,9 +1,9 @@
 import React from 'react'
-import './Profile.scss'
+import './ProfileMeds.scss'
 import { Stack } from 'react-bootstrap'
 import moment from 'moment'
 
-const Profile = (props) => {
+const ProfileMeds = (props) => {
     return (
         <Stack id="profileMedications" direction='vertical' gap={5} >
             <Stack id="profile" direction='horizontal' gap={3}>
@@ -46,4 +46,4 @@ const Profile = (props) => {
     )
 }
 
-export default Profile
+export default ProfileMeds
