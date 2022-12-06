@@ -14,6 +14,7 @@ import Logout from './authentication/Logout';
 import BookAppointments from './pages/patient/BookAppointments/BookAppointments';
 import DoctorRoutes from './authentication/DoctorRoutes';
 import DoctorDashboard from './pages/doctor/Dashboard/DoctorDashboard';
+import PatientProfile from './pages/patient/PatientProfile/PatientProfile';
 
 const App = () => {
   return (
@@ -26,6 +27,8 @@ const App = () => {
         <Route element={<PatientRoutes />}>
           <Route element={<Dashboard />} path="/dashboard" />
           <Route element={<BookAppointments />} path='/appointments' />
+          <Route element={<PatientProfile />} path='/profile' />
+          <Route element={<Logout />} path="/logout" />
         </Route>
         <Route element={<DoctorRoutes />}>
           <Route element={<DoctorDashboard />} path="/doctor/dashboard" />

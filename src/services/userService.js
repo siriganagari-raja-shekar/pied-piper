@@ -34,3 +34,26 @@ export const getDoctor = async (city)=>{
         return false
     }
 }
+
+export const getUserFromLocalStorage = () => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+        console.log(user);
+        return user;
+    } catch (e) {
+        console.log(e);
+        return undefined;
+    }
+}
+
+export const updateUser = async (user) =>{
+    try{
+        const response = await axios.put(`${process.env.REACT_APP_USERS}/${user.id}`,user);
+        localStorage.setItem("user", JSON.stringify(response.data));
+        return response.data;
+    }
+    catch(e){
+        console.log(e);
+        return undefined;
+    }
+}

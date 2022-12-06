@@ -20,6 +20,7 @@
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "sass": "^1.56.0",
+    "title-case": "^3.0.3",
     "twilio": "^3.83.4",
     "twilio-video": "^2.25.0",
     "vanillajs-datepicker": "^1.2.0",

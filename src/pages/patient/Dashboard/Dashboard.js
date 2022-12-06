@@ -4,8 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faTemperatureHalf, faDroplet, faHeartPulse, faLungs
 } from '@fortawesome/free-solid-svg-icons'
-import Profile from '../../../components/patient/Dashboard/Profile/Profile'
 import StatsPanel from '../../../components/commonComponents/StatsPanel/StatsPanel'
+import ProfileMeds from '../../../components/patient/Dashboard/ProfileMeds/ProfileMeds'
+
 import Vitals from '../../../components/patient/Dashboard/Vitals/Vitals'
 import { Stack } from 'react-bootstrap'
 import UpcomingAppointments from '../../../components/patient/Dashboard/UpcomingAppointments/UpcomingAppointments'
@@ -60,8 +61,9 @@ export const Dashboard = () => {
         const vitals = await getLastAppointment()
         const pastAppointments = await getAppointmentHistory()
         const tests = await getAllLabTests()
-
-        setLastAppointment(vitals)
+        
+        if(vitals)
+            setLastAppointment(vitals)
         setUpcomingAppointments(appointments)
         setAppointmentHistory(pastAppointments)
         setLabTests(tests)
@@ -75,28 +77,28 @@ export const Dashboard = () => {
         {
             name: "Heart rate",
             logo: <FontAwesomeIcon icon={faHeartPulse} />,
-            value: lastAppointment.vitals.pulse,
+            value: lastAppointment.vitals.pulse ?  lastAppointment.vitals.pulse : "-",
             measure: " bpm",
             desc: "Pulse is the most important physiological indicator"
         },
         {
             name: "Temperature",
             logo: <FontAwesomeIcon icon={faTemperatureHalf} />,
-            value: lastAppointment.vitals.temperature,
+            value: lastAppointment.vitals.temperature ? lastAppointment.vitals.temperature : "-",
             measure: " F",
             desc: "Temperature below 35 Celsius is very dangerous"
         },
         {
             name: "Blood Pressure",
             logo: <FontAwesomeIcon icon={faDroplet} />,
-            value: lastAppointment.vitals.bloodPressure,
+            value: lastAppointment.vitals.bloodPressure ?  lastAppointment.vitals.bloodPressure :"-",
             measure: "",
             desc: "Blood pressure can rise and fall several times a day"
         },
         {
             name: "SpO2",
             logo: <FontAwesomeIcon icon={faLungs} />,
-            value: lastAppointment.vitals.bloodOxygenLevel,
+            value: lastAppointment.vitals.bloodOxygenLevel? lastAppointment.vitals.bloodOxygenLevel:"-" ,
             measure: " %",
             desc: "Blood pressure can rise and fall several times a day"
         }
@@ -117,9 +119,10 @@ export const Dashboard = () => {
                         </Stack>
                     </Stack>
                 </Stack>
-                <Profile name={user.name}
+                <ProfileMeds name={user.name}
                     mailid={user.email}
                     dob={user.dateOfBirth}
+                    user={user}
                     meds={lastAppointment.prescription.meds}
                 />
             </Stack>
