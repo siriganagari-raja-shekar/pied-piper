@@ -4,15 +4,16 @@ import { Stack } from 'react-bootstrap'
 import NavBar from '../../../components/commonComponents/NavBar/NavBar'
 import { doctorNavLinks } from '../properties/doctorNavLinks'
 import { getStoredUser } from '../../../services/authService'
-import PatientProfile from '../../../components/doctor/manageAppointments/PatientProfile/PatientProfile'
+import PatientProfileAppointment from '../../../components/doctor/manageAppointments/PatientProfileAppointment/PatientProfileAppointment'
 import AppointmentChat from '../../../components/doctor/manageAppointments/AppointmentChat/AppointmentChat'
 import ManagePrescription from '../../../components/doctor/manageAppointments/ManagePrescription/ManagePrescription'
 import ManageLabTests from '../../../components/doctor/manageAppointments/ManageLabTests/ManageLabTests'
 import { useParams } from 'react-router-dom'
+import { patientNavLInks } from '../../patient/Properties/patientNavLinks'
 
 
 const ManageAppointments = () => {
-    const user = getStoredUser()
+    const user = getStoredUser();
     const params = useParams()
     const populateData = async () => {
 
@@ -24,10 +25,10 @@ const ManageAppointments = () => {
 
     return (
         <Stack id="doctor-dashboard-container" direction='horizontal' gap={3}>
-            <NavBar links={doctorNavLinks} />
+            <NavBar links={user.role === "doctor" ? doctorNavLinks : patientNavLInks} />
             <Stack direction='horizontal' gap={3} style={{ width: '100%', margin: '1em' }}>
                 <Stack direction='vertical' gap={3}>
-                    <PatientProfile appointmentId={params.id} />
+                    <PatientProfileAppointment appointmentId={params.id} displayHeading={false}/>
                     <AppointmentChat appointmentId={params.id} />
                 </Stack>
                 <Stack direction='vertical' gap={3}>

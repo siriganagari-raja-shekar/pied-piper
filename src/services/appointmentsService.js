@@ -245,11 +245,58 @@ export const getNextAppointmentByDoctorId = async (id) => {
 }
 
 export const getAppointmentById = async (id)=>{
-    const appointments = await getAppointmentsByDoctorID(id)
-    let appointment = appointments.find((appointment) => {
-        if(id === appointment.id){
-            return appointment
-        }
-    })
-    return appointment
+    var config = {
+        method: 'GET',
+        url: process.env.REACT_APP_APPOINTMENTS+id,
+    }
+    
+    try {
+        const response = await axios(config);
+        const appointment = response.data;
+        console.log(appointment);
+        return appointment
+    } catch (error) {
+        return undefined;
+    }
+    
+}
+
+export const postAppointmentComments = async (id, comment) =>{
+
+    var config = {
+        method: "POST",
+        url: process.env.REACT_APP_APPOINTMENTS+id+"/comments",
+        headers: {
+            'Authorization': `Bearer ${getActiveToken()}`
+        },
+        data : comment
+    }
+
+    try {
+        const response = await axios(config);
+        const appointment = response.data;
+        return appointment
+    } catch (error) {
+        return undefined;
+    }
+}
+
+export const updateVitals = async (id, vitals) => {
+    var config = {
+        method: "PUT",
+        url: process.env.REACT_APP_APPOINTMENTS+id+"/vitals",
+        headers: {
+            'Authorization': `Bearer ${getActiveToken()}`
+        },
+        data : vitals
+    }
+
+    try {
+        const response = await axios(config);
+        const appointment = response.data;
+        console.log(appointment);
+        return appointment;
+    } catch (error) {
+        return undefined;
+    }
 }

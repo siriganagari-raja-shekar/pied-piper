@@ -47,7 +47,7 @@ const NextPatient = () => {
                             <p className="value">{formatDate(nextAppointment.patient.dateOfBirth, "Do MMM, YYYY")}</p>
                         </div>
                         <div>
-                            <p><b>SEX</b></p>
+                            <p><b>Sex</b></p>
                             <p className="value">{nextAppointment.patient.sex}</p>
                         </div>
                         <div>
