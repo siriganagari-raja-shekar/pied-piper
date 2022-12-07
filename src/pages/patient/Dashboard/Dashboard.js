@@ -123,7 +123,7 @@ export const Dashboard = () => {
                     mailid={user.email}
                     dob={user.dateOfBirth}
                     user={user}
-                    meds={lastAppointment.prescription.meds}
+                    meds={lastAppointment.prescription ? lastAppointment.prescription.meds : []}
                 />
             </Stack>
         </Stack>
