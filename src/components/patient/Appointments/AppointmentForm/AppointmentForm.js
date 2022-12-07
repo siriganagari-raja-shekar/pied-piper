@@ -43,9 +43,7 @@ const AppointmentForm = ({ cities }) => {
             e.stopPropagation();
             setValidated(false);
         } else {
-            console.log(appointmentDate + appointmentTime)
             const date = new Date(appointmentDate+"T"+appointmentTime);
-            console.log(date);
             if (await createAppointment(date, selectedDoctor, appointmentType)) {
                 alert("Appointment created successfully")
                 document.getElementById("appointmentForm").reset()

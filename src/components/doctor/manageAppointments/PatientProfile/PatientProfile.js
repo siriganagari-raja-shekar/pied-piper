@@ -13,7 +13,6 @@ const PatientProfile = ({ appointmentId }) => {
 
   const populateData = async () => {
     const getAppointment = await getAppointmentById(appointmentId)
-    console.log(getAppointment)
     setAppointment(getAppointment)
   }
 

@@ -30,7 +30,7 @@ const ManageAppointments = () => {
                     <PatientProfile appointmentId={params.id} />
                     <AppointmentChat appointmentId={params.id} />
                 </Stack>
-                <Stack direction='vertical'>
+                <Stack direction='vertical' gap={3}>
                     <ManagePrescription appointmentId={params.id} />
                     <ManageLabTests appointmentId={params.id} />
                 </Stack>

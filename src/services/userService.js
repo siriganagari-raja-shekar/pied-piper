@@ -38,7 +38,6 @@ export const getDoctor = async (city)=>{
 export const getUserFromLocalStorage = () => {
     try {
         const user = JSON.parse(localStorage.getItem("user"));
-        console.log(user);
         return user;
     } catch (e) {
         console.log(e);

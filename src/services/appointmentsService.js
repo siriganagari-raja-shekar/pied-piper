@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { getStoredUser, getActiveToken } from './authService'
-import moment from 'moment'
 
 export const getUpcomingAppointments = async () => {
     var config = {
@@ -198,7 +197,6 @@ export const getDoctorAppointmentHistory = async (id) => {
     try {
         const appointments = await getAppointmentsByDoctorID(id)
         let appointmentsHistory = []
-        console.log(appointments);
         appointments.map((appointment) => {
             const appointmentTime = new Date(appointment.time);
             const today = new Date();
@@ -206,7 +204,6 @@ export const getDoctorAppointmentHistory = async (id) => {
                 appointmentsHistory.push(appointment)
             }
         })
-        console.log(appointmentsHistory)
         return appointmentsHistory;
     } catch (e) {
         console.log(e)
@@ -250,9 +247,9 @@ export const getNextAppointmentByDoctorId = async (id) => {
 export const getAppointmentById = async (id)=>{
     const appointments = await getAppointmentsByDoctorID(id)
     let appointment = appointments.find((appointment) => {
-        if(id === appointment.id)
+        if(id === appointment.id){
             return appointment
+        }
     })
-    console.log(appointment)
     return appointment
 }

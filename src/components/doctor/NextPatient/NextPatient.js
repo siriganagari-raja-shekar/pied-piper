@@ -15,7 +15,6 @@ const NextPatient = () => {
     const populate = async () => {
         const doctor = getStoredUser()
         const appointment = await getNextAppointmentByDoctorId(doctor.id)
-        console.log(appointment)
         setNextAppointment(appointment)
     }
 
