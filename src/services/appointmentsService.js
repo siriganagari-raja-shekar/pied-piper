@@ -24,7 +24,7 @@ export const getUpcomingAppointments = async () => {
                 upcomingAppointments.push(appointment)
             }
         })
-        upcomingAppointments.sort((a,b)=> new Date(a.time) < new Date(b.time) ? -1 : 1);
+        upcomingAppointments.sort((a, b) => new Date(a.time) < new Date(b.time) ? -1 : 1);
         return upcomingAppointments;
     } catch (e) {
         console.log(e)
@@ -42,7 +42,7 @@ export const getAppointmentHistory = async () => {
             'Authorization': `Bearer ${getActiveToken()}`
         }
     };
-    
+
     try {
         const response = await axios(config)
         const appointments = response.data
@@ -51,12 +51,12 @@ export const getAppointmentHistory = async () => {
             const appointmentTime = new Date(appointment.time);
             const today = new Date();
             if (appointmentTime < today) {
-                if(appointment.labs.length > 0)
-                    appointment.labs.sort((a,b)=> new Date(a.time) < new Date(b.time) ? 1 : -1)
+                if (appointment.labs.length > 0)
+                    appointment.labs.sort((a, b) => new Date(a.time) < new Date(b.time) ? 1 : -1)
                 appointmentsHistory.push(appointment)
             }
         })
-        appointmentsHistory.sort((a,b)=> new Date(a.time) < new Date(b.time) ? 1 : -1);
+        appointmentsHistory.sort((a, b) => new Date(a.time) < new Date(b.time) ? 1 : -1);
         return appointmentsHistory;
     } catch (e) {
         console.log(e)
@@ -173,15 +173,15 @@ export const getInPersonConsultationsByDoctorID = async () => {
     return inPersonConsultations
 }
 
-export const getTodaysAppointmentsByDoctorID= async (id) => {
+export const getTodaysAppointmentsByDoctorID = async (id) => {
     try {
         const appointments = await getAppointmentsByDoctorID(id)
         let todaysAppointments = []
         appointments.map((appointment) => {
             const appointmentTime = new Date(appointment.time);
             const today = new Date();
-            const tomorrow= new Date();
-            tomorrow.setDate(tomorrow.getDate()+1);
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
             if (appointmentTime.toDateString() === today.toDateString()) {
                 todaysAppointments.push(appointment)
             }
@@ -244,12 +244,12 @@ export const getNextAppointmentByDoctorId = async (id) => {
     return nextAppointment;
 }
 
-export const getAppointmentById = async (id)=>{
+export const getAppointmentById = async (id) => {
     var config = {
         method: 'GET',
-        url: process.env.REACT_APP_APPOINTMENTS+id,
+        url: process.env.REACT_APP_APPOINTMENTS + id,
     }
-    
+
     try {
         const response = await axios(config);
         const appointment = response.data;
@@ -258,18 +258,18 @@ export const getAppointmentById = async (id)=>{
     } catch (error) {
         return undefined;
     }
-    
+
 }
 
-export const postAppointmentComments = async (id, comment) =>{
+export const postAppointmentComments = async (id, comment) => {
 
     var config = {
         method: "POST",
-        url: process.env.REACT_APP_APPOINTMENTS+id+"/comments",
+        url: process.env.REACT_APP_APPOINTMENTS + id + "/comments",
         headers: {
             'Authorization': `Bearer ${getActiveToken()}`
         },
-        data : comment
+        data: comment
     }
 
     try {
@@ -284,11 +284,11 @@ export const postAppointmentComments = async (id, comment) =>{
 export const updateVitals = async (id, vitals) => {
     var config = {
         method: "PUT",
-        url: process.env.REACT_APP_APPOINTMENTS+id+"/vitals",
+        url: process.env.REACT_APP_APPOINTMENTS + id + "/vitals",
         headers: {
             'Authorization': `Bearer ${getActiveToken()}`
         },
-        data : vitals
+        data: vitals
     }
 
     try {
@@ -299,4 +299,21 @@ export const updateVitals = async (id, vitals) => {
     } catch (error) {
         return undefined;
     }
+}
+
+export const getUpcomingAppointmentsByDoctorId = async (id) => {
+    const appointments = await getAppointmentsByDoctorID(id)
+    let upcomingAppointments = []
+    appointments.map((appointment) => {
+        const appointmentTime = new Date(appointment.time);
+        const today = new Date();
+        if (appointmentTime > today) {
+            upcomingAppointments.push(appointment)
+        }
+    })
+    
+    upcomingAppointments.sort((a, b)=>{
+        return a.time > b.time
+    })
+    return upcomingAppointments;
 }
