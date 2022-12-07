@@ -38,6 +38,7 @@ const Appointments = ({ appointments, type, limit }) => {
     let count = 0
     const [lgShow, setLgShow] = useState(false);
     const [videoCallModalDisplay, setVideoCallModalDisplay] = useState(false);
+    console.log(appointments);
 
     return (
         <>

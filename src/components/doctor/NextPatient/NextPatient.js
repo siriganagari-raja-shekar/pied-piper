@@ -2,34 +2,42 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Stack, Button, Modal } from 'react-bootstrap'
 import ProfilePic from '../../../Assets/Images/profilejpg.jpg'
-import { getNextAppointmentByDoctorId } from '../../../services/appointmentsService'
+import { getNextAppointmentByDoctorId, getTodaysAppointmentsByDoctorID } from '../../../services/appointmentsService'
 import { getStoredUser } from '../../../services/authService'
 import VideoChat from '../../twilio/VideoChat'
 import { formatDate } from '../../../services/utils'
 import './NextPatient.scss'
+import { getUserFromLocalStorage } from '../../../services/userService'
 
 const NextPatient = () => {
     const [videoCallModalDisplay, setVideoCallModalDisplay] = useState(false);
-    const [nextAppointment, setNextAppointment] = useState(null)
+    const [nextAppointment, setNextAppointment] = useState(null);
 
     const populate = async () => {
-        const doctor = getStoredUser()
-        const appointment = await getNextAppointmentByDoctorId(doctor.id)
-        console.log(appointment)
-        setNextAppointment(appointment)
+        const user = getUserFromLocalStorage();
+        const appointments = await getTodaysAppointmentsByDoctorID(user.id);
+        if(appointments){
+            const now = new Date();
+            const upcomingAppointments = appointments.filter(appointment => new Date(appointment.time) > now);
+            upcomingAppointments.sort((a,b) => new Date(a.time) < new Date(b.time) ? -1 : 1);
+            setNextAppointment(upcomingAppointments[0]);
+        }
     }
 
     useEffect(() => {
-        populate()
-    }, [])
+        populate();
+    },[])
 
     return (
         <>
-            {nextAppointment &&
-                <Stack id="next-patient-container" direction='vertical' gap={3}>
-                    <Stack direction='horizontal' id='title'>
-                        <h3>Next patient</h3>
-                    </Stack>
+            <Stack id="next-patient-container" direction='vertical' gap={3}>
+                <Stack direction='horizontal' id='title'>
+                    <h3>Next patient</h3>
+                </Stack>
+                {
+                nextAppointment 
+                ?
+                <>
                     <Stack id="next-patient-profile" direction='horizontal' gap={3} className='flex-wrap'>
                         <img src={ProfilePic} alt="profile" />
                         <Stack className='justify-content-center'>
@@ -70,20 +78,14 @@ const NextPatient = () => {
                             <p className="value">{nextAppointment.patient.subscription}</p>
                         </div>
                     </Stack>
-                    <Stack
-                        id="patient-diagnosis"
-                        className="flex-wrap"
-                        direction='horizontal'
-                        gap={3}>
-                        <b>Previous diagnosis:</b>
-                        <span>Fever</span>
-                        <span>HIV</span>
-                        <span>AIDS</span>
-                        <span>Loose motions</span>
-                    </Stack>
-                </Stack>
-            }
-            {nextAppointment &&
+                </>
+                :
+                    <h4>You are done for the day!</h4>
+                }
+            </Stack>
+            {
+                nextAppointment 
+                &&
                 <Modal
                     size="xl"
                     show={videoCallModalDisplay}
