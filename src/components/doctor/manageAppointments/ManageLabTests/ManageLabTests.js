@@ -7,10 +7,10 @@ import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { saveLabTest } from "../../../../services/LabTestsService";
 import './ManageLabTests.scss'
 import { formatDate } from "../../../../services/utils";
-
+import { getStoredUser } from "../../../../services/authService";
 
 export default function ManageLabTests({ appointmentId }) {
-
+  const user = getStoredUser()
   const [tests, setTests] = useState([]);
   const populateData = async () => {
     let appointment = await getAppointmentById(appointmentId)
@@ -111,38 +111,44 @@ export default function ManageLabTests({ appointmentId }) {
           {tests.map((test) => (
             <Stack direction='horizontal' key={test.id} className='justify-content-between'>
               <p>{test.testType}, {formatDate(test.time, "Do MMM YY")}</p>
-              <Stack direction='horizontal' gap={3}>
-                <Button onClick={() => handleEditClick(test)}>
-                  <FontAwesomeIcon icon={faPenToSquare} />
-                </Button>
-                <Button onClick={() => handleDeleteClick(test.id)}>
-                  <FontAwesomeIcon icon={faTrashCan} />
-                </Button>
-              </Stack>
+              {user.role === 'doctor' &&
+                <Stack direction='horizontal' gap={3}>
+                  <Button onClick={() => handleEditClick(test)}>
+                    <FontAwesomeIcon icon={faPenToSquare} />
+                  </Button>
+                  <Button onClick={() => handleDeleteClick(test.id)}>
+                    <FontAwesomeIcon icon={faTrashCan} />
+                  </Button>
+                </Stack>
+              }
             </Stack>
           ))}
         </Stack>
-        {isEditing ? (
-          <Form onSubmit={handleEditFormSubmit}>
+        {user.role === 'doctor' &&
+          <>{isEditing &&
+            <Form onSubmit={handleEditFormSubmit}>
             <Stack direction='vertical' gap={3} >
-            <Form.Group >
-              <Form.Control
-                name="editTodo"
-                type="text"
-                placeholder="Edit todo"
-                value={currentTest.testType}
-                onChange={handleEditTestInputChange}
-              />
-            </Form.Group>
+              <Form.Group >
+                <Form.Control
+                  name="editTodo"
+                  type="text"
+                  placeholder="Edit todo"
+                  value={currentTest.testType}
+                  onChange={handleEditTestInputChange}
+                />
+              </Form.Group>
 
-            <Stack direction='horizontal' gap={3}>
-              <Button type="submit">Update</Button>
-              <Button onClick={() => setIsEditing(false)}>Cancel</Button>
-            </Stack>
+              <Stack direction='horizontal' gap={3}>
+                <Button type="submit">Update</Button>
+                <Button onClick={() => setIsEditing(false)}>Cancel</Button>
+              </Stack>
             </Stack>
           </Form>
-        ) : (
-          <Form onSubmit={handleFormSubmit} id="medsform">
+          }</>
+        }
+        {user.role === 'doctor' &&
+          <>{!isEditing &&
+            <Form onSubmit={handleFormSubmit} id="medsform">
             <Stack direction='vertical' gap={3} >
               <Form.Group >
                 <Form.Control
@@ -156,7 +162,8 @@ export default function ManageLabTests({ appointmentId }) {
               <Button type="submit">Add</Button>
             </Stack>
           </Form>
-        )}
+          }</>
+        }
       </Stack>
 
     </Stack>

@@ -23,5 +23,4 @@ export const saveLabTest = async (tests, appointmentId) => {
         .catch(function (error) {
             console.log(error);
         });
-
 }

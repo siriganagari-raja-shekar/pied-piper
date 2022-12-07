@@ -49,14 +49,11 @@ export default function ManagePrescription({ appointmentId }) {
     setTimeOfDayToTake(e.target.value);
   }
 
-  // function to get the value of the edit input and set the new state
   function handleEditInputChange(e) {
-    // set the new state value to what's currently in the edit input box
     setCurrentMed({ ...currentMed, name: e.target.value })
   }
 
   function handleEditTakeInputChange(e) {
-    // set the new state value to what's currently in the edit input box
     setCurrentMed({ ...currentMed, timeOfDayToTake: e.target.value })
   }
 
@@ -82,7 +79,6 @@ export default function ManagePrescription({ appointmentId }) {
 
   function handleEditFormSubmit(e) {
     e.preventDefault();
-    // call the handleUpdateTodo function - passing the currentTodo.id and the currentTodo object as arguments
     handleUpdateTodo(currentMed.id, currentMed);
     e.target.reset()
   }
@@ -94,27 +90,17 @@ export default function ManagePrescription({ appointmentId }) {
     setMeds(removeItem);
   }
 
-  // function to edit a todo item
   function handleUpdateTodo(id, updatedMed) {
-    // here we are mapping over the todos array - the idea is check if the todo.id matches the id we pass into the function
-    // if the id's match, use the second parameter to pass in the updated todo object
-    // otherwise just use old todo
     const updatedItem = meds.map((med) => {
       return med.id === id ? updatedMed : med;
     });
-    // set editing to false because this function will be used inside a onSubmit function - which means the data was submited and we are no longer editing
     setIsEditing(false);
-    // update the todos state with the updated todo
     setMeds(updatedItem);
   }
 
-  // function to handle when the "Edit" button is clicked
   function handleEditClick(med) {
-    // set editing to true
     setIsEditing(true);
-    // set the currentTodo to the todo item that was clicked
     setCurrentMed({ ...med });
-
   }
 
   return (
@@ -125,7 +111,7 @@ export default function ManagePrescription({ appointmentId }) {
           {meds.map((med) => (
             <Stack direction='horizontal' key={med.id} className='justify-content-between'>
               <p>{med.name}, {med.timeOfDayToTake}</p>
-              {user.role != 'doctor' &&
+              {user.role === 'doctor' &&
                 <Stack direction='horizontal' gap={3}>
                   <Button onClick={() => handleEditClick(med)}>
                     <FontAwesomeIcon icon={faPenToSquare} />
