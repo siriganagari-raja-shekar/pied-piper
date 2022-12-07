@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { Stack, Button, Modal } from 'react-bootstrap'
+import { Stack, Button, Modal, NavLink } from 'react-bootstrap'
 import ProfilePic from '../../../Assets/Images/profilejpg.jpg'
 import { getNextAppointmentByDoctorId } from '../../../services/appointmentsService'
 import { getStoredUser } from '../../../services/authService'
@@ -15,6 +15,7 @@ const NextPatient = () => {
     const populate = async () => {
         const doctor = getStoredUser()
         const appointment = await getNextAppointmentByDoctorId(doctor.id)
+        //console.log(appointment)
         setNextAppointment(appointment)
     }
 
@@ -38,7 +39,9 @@ const NextPatient = () => {
                         </Stack>
                         <Stack direction="vertical" className='justify-content-around'>
                             <Button onClick={() => setVideoCallModalDisplay(!videoCallModalDisplay)}>Connect to call</Button>
-                            <Button>Open appointment</Button>
+                            <Button>
+                                <NavLink >Open appointment</NavLink>
+                            </Button>
                         </Stack>
                     </Stack>
                     <Stack className="patient-details justify-content-between" direction='horizontal' gap={3}>

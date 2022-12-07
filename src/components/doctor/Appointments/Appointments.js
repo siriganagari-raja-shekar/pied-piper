@@ -51,7 +51,12 @@ const Appointments = ({ appointments, type, limit }) => {
                             count++
                             if (count <= limit) {
                                 return (
-                                    <Appointment key={appointment.id} appointment={appointment} videoCallModalDisplay={videoCallModalDisplay} setVideoCallModalDisplay={setVideoCallModalDisplay} />
+                                    <Appointment 
+                                        key={appointment.id} 
+                                        appointment={appointment} 
+                                        videoCallModalDisplay={videoCallModalDisplay} 
+                                        setVideoCallModalDisplay={setVideoCallModalDisplay} 
+                                    />
                                 )
                             }
                         })
