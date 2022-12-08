@@ -22,7 +22,7 @@ const PatientAppointmentHistoryPage = () => {
     useEffect(()=>{
         populateData()
     }, [])
-
+    
     return (
         <Stack direction='horizontal' id='appointments-page-container' className='flex-wrap' gap={3} >
             <NavBar links={patientNavLInks} />
