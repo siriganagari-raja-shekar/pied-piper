@@ -5,6 +5,7 @@ import './RecentPatients.scss'
 import { Stack } from 'react-bootstrap'
 
 const RecentPatients = ({ appointmentHistory }) => {
+
   let count = 0
   return (
     <Stack direction='vertical' gap={3}>
@@ -25,8 +26,9 @@ const RecentPatients = ({ appointmentHistory }) => {
         <tbody>
           {
             appointmentHistory.map(appointment => {
-              if (appointment.prescription) {
-                return (
+                return appointment.prescription
+                ?
+                (
                   <tr key={appointment.id}>
                     <td>{++count}</td>
                     <td>{appointment.patient.name}</td>
@@ -35,8 +37,8 @@ const RecentPatients = ({ appointmentHistory }) => {
                     <td>{appointment.prescription.problemDiagnosed}</td>
                   </tr>
                 )
-              }
-              return <></>
+                :
+                <></>
             })
           }
         </tbody>

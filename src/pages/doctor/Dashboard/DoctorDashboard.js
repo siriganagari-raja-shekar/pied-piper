@@ -27,6 +27,7 @@ const DoctorDashboard = () => {
   const [todaysAppointments, setTodaysAppointments] = useState([]);
   const [appointmentHistory, setAppointmentHistory] = useState([]);
 
+
   const populateData = async () => {
     const doctorStats = await getDoctorStats(user.id)
     const inPersonAppointments = await getInPersonConsultationsByDoctorID(user.id)
@@ -35,7 +36,7 @@ const DoctorDashboard = () => {
     setConsultationsStats(doctorStats)
     setInPersonConsultations(inPersonAppointments)
     setAppointmentHistory(pastAppointments)
-    setTodaysAppointments(todaysAppointmentsTemp)
+    setTodaysAppointments(todaysAppointmentsTemp);
   }
 
   useEffect(() => {
@@ -71,8 +72,8 @@ const DoctorDashboard = () => {
           <Stack direction='vertical' gap={3}>
             <StatsPanel stats={stats} />
             <Stack direction='horizontal' gap={3}>
-              <Appointments appointments={todaysAppointments}  limit="3" type='1'/>
-              <NextPatient appointments={todaysAppointments}/>
+              <Appointments appointments={todaysAppointments}  limit="3" />
+              <NextPatient />
             </Stack>
             <Stack direction='vertical' id="patientTable">
               <RecentPatients appointmentHistory={appointmentHistory} />

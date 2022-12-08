@@ -74,7 +74,7 @@ const PatientProfileAppointment = ({ appointmentId, displayHeading}) => {
           <p className='m-0'>{appointment.patient.address.city}</p>
         </Stack>
         <Stack direction="vertical" className='justify-content-around'>
-          { new Date(appointment.time) > new Date() && <Button onClick={() => setVideoCallModalDisplay(!videoCallModalDisplay)}>Connect to call</Button>}
+          { new Date(appointment.time) > new Date() && appointment.appointmentType === "video" && <Button onClick={() => setVideoCallModalDisplay(!videoCallModalDisplay)}>Connect to call</Button>}
         </Stack>
       </Stack>
       <Stack className="patient-details justify-content-between" direction='horizontal' gap={3}>
