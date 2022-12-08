@@ -26,7 +26,7 @@ const PatientAppointmentHistoryPage = () => {
     return (
         <Stack direction='horizontal' id='appointments-page-container' className='flex-wrap' gap={3} >
             <NavBar links={patientNavLInks} />
-            <Stack direction='vertical'>
+            <Stack direction='vertical' id='appointment-history-container'>
                 {
                     <PatientAppointmentHistory appointments={appointmentHistory} limit={100} type={"1"} title="Appointment History"/>
                 }

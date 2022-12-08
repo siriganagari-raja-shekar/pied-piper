@@ -1,0 +1,10 @@
+#history-items-container, #appointment-history-com {
+    overflow: scroll;
+}
+
+@media screen and (max-width: 850px){
+    #history-items-container, #appointment-history-com {
+        overflow: unset;
+    }
+}
+

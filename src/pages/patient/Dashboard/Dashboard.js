@@ -30,8 +30,8 @@ export const Dashboard = () => {
     const [appointmentHistory, setAppointmentHistory] = useState([])
     const [labTests, setLabTests] = useState([])
 
-    const user= getStoredUser()
-    const stats=[
+    const user = getStoredUser()
+    const stats = [
         {
             statId: "appointmentStat",
             statIcon: <FontAwesomeIcon icon={faCalendarCheck} />,
@@ -61,8 +61,8 @@ export const Dashboard = () => {
         const vitals = await getLastAppointment()
         const pastAppointments = await getAppointmentHistory()
         const tests = await getAllLabTests()
-        
-        if(vitals)
+
+        if (vitals)
             setLastAppointment(vitals)
         setUpcomingAppointments(appointments)
         setAppointmentHistory(pastAppointments)
@@ -77,7 +77,7 @@ export const Dashboard = () => {
         {
             name: "Heart rate",
             logo: <FontAwesomeIcon icon={faHeartPulse} />,
-            value: lastAppointment.vitals.pulse ?  lastAppointment.vitals.pulse : "-",
+            value: lastAppointment.vitals.pulse ? lastAppointment.vitals.pulse : "-",
             measure: " bpm",
             desc: "Pulse is the most important physiological indicator"
         },
@@ -91,14 +91,14 @@ export const Dashboard = () => {
         {
             name: "Blood Pressure",
             logo: <FontAwesomeIcon icon={faDroplet} />,
-            value: lastAppointment.vitals.bloodPressure ?  lastAppointment.vitals.bloodPressure :"-",
+            value: lastAppointment.vitals.bloodPressure ? lastAppointment.vitals.bloodPressure : "-",
             measure: "",
             desc: "Blood pressure can rise and fall several times a day"
         },
         {
             name: "SpO2",
             logo: <FontAwesomeIcon icon={faLungs} />,
-            value: lastAppointment.vitals.bloodOxygenLevel? lastAppointment.vitals.bloodOxygenLevel:"-" ,
+            value: lastAppointment.vitals.bloodOxygenLevel ? lastAppointment.vitals.bloodOxygenLevel : "-",
             measure: " %",
             desc: "Blood pressure can rise and fall several times a day"
         }
@@ -107,11 +107,22 @@ export const Dashboard = () => {
     return (
         <Stack id="dashboard" direction='horizontal' gap={3} className='justify-content-between'>
             <NavBar links={patientNavLInks} />
-            <Stack direction='horizontal' className='p-3' gap={3}>
-                <Stack direction='vertical' gap={3} className='justify-content-between'>
-                    <StatsPanel stats={stats}/>
+            <Stack direction='horizontal'
+            className='
+            p-3  
+            flex-wrap
+            flex-grow-1
+            ' gap={3} id="main-content">
+                <Stack direction='vertical' gap={3}
+                className='
+                justify-content-between
+                '>
+                    <StatsPanel stats={stats} className='flex-wrap'/>
                     <Vitals vitals={vitals} />
-                    <Stack direction='horizontal' gap={3}>
+                    <Stack direction='horizontal' gap={3} className='
+                        flex-xl-nowrap
+                        flex-wrap
+                    '>
                         <UpcomingAppointments appointments={upcomingAppointments} />
                         <Stack direction='vertical' gap={3}>
                             <Prescriptions appointmentHistory={appointmentHistory} />
@@ -119,11 +130,12 @@ export const Dashboard = () => {
                         </Stack>
                     </Stack>
                 </Stack>
-                <ProfileMeds name={user.name}
+                <ProfileMeds name={user.name} 
                     mailid={user.email}
                     dob={user.dateOfBirth}
                     user={user}
                     meds={lastAppointment.prescription ? lastAppointment.prescription.meds : []}
+                    id="profile-meds"
                 />
             </Stack>
         </Stack>

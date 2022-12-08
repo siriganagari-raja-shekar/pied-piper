@@ -4,7 +4,11 @@ import { Stack } from 'react-bootstrap'
 
 const Vitals = (props) => {
   return (
-    <Stack  id="vitals" direction='horizontal' gap={4} className='align-items-stretch'>
+    <Stack  id="vitals" direction='horizontal' gap={4} 
+    className='
+    align-items-stretch
+    flex-wrap
+    '>
       {
         props.vitals.map((vital) => {
           return (
