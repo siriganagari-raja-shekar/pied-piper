@@ -129,19 +129,26 @@ const SubscribeForm = () => {
                 userObject.specialization = document.querySelector("#specialization").value;
             }
 
-            const result = await userSignUp(userObject);
-            if(result.status === "success"){
-                setSignupSuccess(true);
-                setTimeout(() => {
-                    navigate("/signin");
-                }, 4000);
+            if(userRole === "patient"){
+                navigate("/payment", { state: { user: userObject}});
             }
             else{
-                setSignUpErrorMessage(result.error);
-                setTimeout(() => {
-                    setSignUpErrorMessage("");
-                }, 5000);
+                const result = await userSignUp(userObject);
+                if(result.status === "success"){
+                    setSignupSuccess(true);
+                    setTimeout(() => {
+                        navigate("/signin");
+                    }, 4000);
+                }
+                else{
+                    setSignUpErrorMessage(result.error);
+                    setTimeout(() => {
+                        setSignUpErrorMessage("");
+                    }, 5000);
+                }
             }
+
+            
         }
 
         form.classList.add('was-validated');
