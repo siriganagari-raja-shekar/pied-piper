@@ -20,6 +20,7 @@ import ManageAppointments from './pages/doctor/ManageAppointments/ManageAppointm
 import AppointmentsPage from './pages/doctor/AppointmentsPage/AppointmentsPage';
 import AppointmentHistoryPage from './pages/doctor/AppointmentHistoryPage/AppointmentHistoryPage';
 import PatientAppointmentHistoryPage from './pages/patient/PatientAppointmentHistoryPage/PatientAppointmentHistoryPage';
+import Payment from './components/homepage/Payment/Payment';
 
 const App = () => {
   return (
@@ -27,7 +28,8 @@ const App = () => {
       <Routes>
         <Route path="/signin" element={<Signin />}></Route>
         <Route path="/" element={<LandingPage />}></Route>
-        <Route path="subscribe" element={<SubscribePage />}></Route>
+        <Route path="/subscribe" element={<SubscribePage />}></Route>
+        <Route path="/payment" element={<Payment />}></Route>
         <Route element={<Logout />} path="/logout" />
         <Route element={<PatientRoutes />}>
           <Route element={<Dashboard />} path="/dashboard" />
