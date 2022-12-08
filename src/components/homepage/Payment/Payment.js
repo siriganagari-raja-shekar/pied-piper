@@ -41,7 +41,6 @@ function Payment() {
 
   return (
     <>
-      <h1>Subscription payment</h1>
       {clientSecret && stripePromise && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
           <CheckoutForm user={user}/>

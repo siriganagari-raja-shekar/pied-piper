@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack, Form, Button } from 'react-bootstrap';
 import "./ProfileCard.scss";
-import profilePicture from "./../../../Assets/Images/profilejpg.jpg";
+import profilePicture from "./../../../Assets/Images/profilejpg.png";
 import { titleCase } from 'title-case';
 import { useEffect } from 'react';
 import { useState } from 'react';

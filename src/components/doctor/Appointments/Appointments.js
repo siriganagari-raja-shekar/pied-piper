@@ -4,9 +4,10 @@ import { useNavigate } from 'react-router-dom'
 import './Appointments.scss'
 import { NavLink } from 'react-router-dom'
 import { formatDate } from '../../../services/utils'
-import profile from '../../../Assets/Images/profilejpg.jpg'
+import profile from '../../../Assets/Images/profilejpg.png'
 import { useState } from 'react'
 import VideoChat from '../../twilio/VideoChat'
+import { titleCase } from 'title-case'
 
 
 
@@ -26,7 +27,7 @@ const Appointment = ({ appointment, type }) => {
                     <img src={profile} alt="profile" style={{ width: "60px", height: '60px', borderRadius: '50%' }} />
                     <Stack direction="vertical" className='justify-content-center'>
                         <p id="username"><b>{appointment.patient.name}</b></p>
-                        <p>Male, {"Age: " + (new Date().getFullYear() - new Date(appointment.patient.dateOfBirth).getFullYear())} </p>
+                        <p>{titleCase(appointment.patient.sex)}, {"Age: " + (new Date().getFullYear() - new Date(appointment.patient.dateOfBirth).getFullYear())} </p>
                     </Stack>
                 </Stack>
                 <Stack direction="vertical" className='align-items-end justify-content-center flex-grow-0'>

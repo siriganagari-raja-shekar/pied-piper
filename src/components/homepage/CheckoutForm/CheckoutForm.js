@@ -29,12 +29,14 @@ export default function CheckoutForm({user}) {
             elements,  
             redirect: 'if_required'
         });
-        console.log(paymentIntent);
         if(paymentIntent.status === "succeeded"){
             const result = await userSignUp(user);
             if(result.status === "success"){
                 setMessage("Payment done and user created. Please wait while you are being re-directed to signin");
-                navigate("/signin")
+
+                setTimeout(() => {
+                    navigate('/signin');
+                }, 5000);
             }
         }
     } catch (error) {
@@ -49,6 +51,7 @@ export default function CheckoutForm({user}) {
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
+      <h3>Subscription payment</h3>
       <PaymentElement id="payment-element" />
       <button disabled={isProcessing || !stripe || !elements} id="submit">
         <span id="button-text">

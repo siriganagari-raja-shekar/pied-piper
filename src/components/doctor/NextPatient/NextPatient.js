@@ -1,17 +1,19 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Stack, Button, Modal, NavLink } from 'react-bootstrap'
-import ProfilePic from '../../../Assets/Images/profilejpg.jpg'
+import ProfilePic from '../../../Assets/Images/profilejpg.png'
 import { getNextAppointmentByDoctorId, getTodaysAppointmentsByDoctorID } from '../../../services/appointmentsService'
 import { getStoredUser } from '../../../services/authService'
 import VideoChat from '../../twilio/VideoChat'
 import { formatDate } from '../../../services/utils'
 import './NextPatient.scss'
-import { getUserFromLocalStorage } from '../../../services/userService'
+import { getUserFromLocalStorage } from '../../../services/userService';
+import { useNavigate } from 'react-router-dom';
 
 const NextPatient = () => {
     const [videoCallModalDisplay, setVideoCallModalDisplay] = useState(false);
     const [nextAppointment, setNextAppointment] = useState(null);
+    const navigate = useNavigate();
 
     const populate = async () => {
         const user = getUserFromLocalStorage();
@@ -47,7 +49,7 @@ const NextPatient = () => {
                         </Stack>
                         <Stack direction="vertical" className='justify-content-around'>
                             <Button onClick={() => setVideoCallModalDisplay(!videoCallModalDisplay)}>Connect to call</Button>
-                            <Button>
+                            <Button onClick={()=> navigate(`/doctor/manageAppointment/${nextAppointment.id}`)}>
                                 <NavLink >Open appointment</NavLink>
                             </Button>
                         </Stack>

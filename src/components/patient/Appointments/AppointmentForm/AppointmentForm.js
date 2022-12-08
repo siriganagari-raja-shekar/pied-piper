@@ -4,6 +4,7 @@ import { getDoctor } from '../../../../services/userService'
 import './AppointmentForm.scss'
 import moment from 'moment'
 import { createAppointment } from '../../../../services/appointmentsService'
+import { useNavigate } from 'react-router-dom'
 
 const AppointmentForm = ({ cities }) => {
     const [appointmentDate, setAppointmentDate] = useState("")
@@ -13,6 +14,7 @@ const AppointmentForm = ({ cities }) => {
     const [doctors, setDoctors] = useState([])
     const [selectedDoctor, setSelectedDoctor] = useState("")
     const [validated, setValidated] = useState(false);
+    const navigate = useNavigate();
 
     const onChangeHandler = async (e) => {
         if (e.target.name === "appointmentDate")
@@ -46,7 +48,8 @@ const AppointmentForm = ({ cities }) => {
             const date = new Date(appointmentDate+"T"+appointmentTime);
             if (await createAppointment(date, selectedDoctor, appointmentType)) {
                 alert("Appointment created successfully")
-                document.getElementById("appointmentForm").reset()
+                document.getElementById("appointmentForm").reset();
+                navigate("/dashboard");
             } else {
                 alert("Appointment creation failed, try again")
             }

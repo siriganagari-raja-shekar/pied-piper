@@ -5,12 +5,15 @@ import { faClock } from '@fortawesome/free-solid-svg-icons'
 import './UpcomingAppointments.scss'
 import { NavLink } from 'react-router-dom'
 import { formatDate } from '../../../../services/utils'
-import profile from '../../../../Assets/Images/profilejpg.jpg'
+import profile from '../../../../Assets/Images/profilejpg.png'
 import { useState } from 'react'
 import VideoChat from '../../../twilio/VideoChat'
+import { faEye } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from 'react-router-dom'
 
 
 const UpcomingAppointment = ({ appointment, videoCallModalDisplay, setVideoCallModalDisplay, setVideoAppointmentId }) => {
+    const navigate = useNavigate();
     return (
         <Stack key={appointment.id} direction='vertical' className='appointment'>
             <span className="backgroundClock"><FontAwesomeIcon icon={faClock} /></span>
@@ -21,7 +24,7 @@ const UpcomingAppointment = ({ appointment, videoCallModalDisplay, setVideoCallM
                 {appointment.appointmentType === 'in-person' &&
                     <p>In person consultation</p>
                 }
-                <span>...</span>
+                <span onClick={()=> navigate(`/patient/manageAppointment/${appointment.id}`)}><FontAwesomeIcon icon={faEye} /></span>
             </Stack>
             <h5>{formatDate(appointment.time, "MMM Do YYYY, h:mm A")}</h5>
             <Stack direction='horizontal' className='assignedDoctor'>

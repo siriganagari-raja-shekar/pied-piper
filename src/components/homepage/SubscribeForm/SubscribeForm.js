@@ -29,7 +29,7 @@ const SubscribeForm = () => {
             cityRegex: "^[a-z-A-Z ]{4,}$",
             zipcodeRegex: "^\\d{5}",
             dateOfBirthRegex: "^\\d{2}/\\d{2}/\\d{4}",
-            hospitalNameRegex: "^\\w{5,}$",
+            hospitalNameRegex: "^[a-zA-Z ]{5,}$",
             specializationRegex: "^\\w{5,}$",
             heightRegex: "^\\d{3}$",
             weightRegex: "^\\d{2,3}$"
