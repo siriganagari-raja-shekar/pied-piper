@@ -14,7 +14,7 @@
     box-shadow: 2px 1px 5px -3px #000;
     border-radius: 0.5em;
     background-color: white;
-    height: 100%;
+    min-height: 570px;
 
     p {
         margin: 0;
@@ -34,6 +34,7 @@
     box-shadow: 2px 1px 5px -3px #000;
     padding: 1em;
     overflow: hidden;
+    flex-grow: 0;
 
     .assignedDoctor {
         padding: 1em;
@@ -61,6 +62,15 @@
 
         &:hover{
             background-color: #223554;
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+        button {
+            background: white;
+            color: #223554;
+            width: fit-content;
+            font-weight: bold;
         }
     }
 }

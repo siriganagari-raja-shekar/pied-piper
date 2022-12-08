@@ -14,3 +14,9 @@
 .form-label{
     color: #3E65A7;
 }
+
+@media screen and (min-width: 992px) {
+    #appointmentForm{
+        width: 100%;
+    }
+}

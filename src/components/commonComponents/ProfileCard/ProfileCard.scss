@@ -20,15 +20,13 @@
     background: white;
     border-radius: 0.5em;
     padding: 1em;
-    width: 500px;
-    min-height: 100%;
 }
 
 #profile-form {
-    width: 500px;
+    width: 100%;
     margin: auto;
 
-    button{
+    button {
         width: 100%;
         background-color: #3e65a7;
     }
@@ -38,17 +36,34 @@
         border-radius: 0.5em;
         padding: 0.5em;
 
-        span{
+        span {
             float: right;
             margin-right: 15px;
         }
     }
 
-    .invalid-feedback{
+    .invalid-feedback {
         border-color: #dc3545;
     }
 
-    .valid-feedback{
+    .valid-feedback {
         border-color: #198754;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    #profile-card-container {
+        flex-direction: column !important;
+    }
+
+
+    #profile-form {
+        height: fit-content;
+    }
+}
+
+@media screen and (min-width: 850px) {
+    #profile-form {
+        min-height: 100%;
     }
 }

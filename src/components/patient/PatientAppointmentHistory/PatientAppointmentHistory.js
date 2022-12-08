@@ -53,11 +53,11 @@ const PatientAppointmentHistory = ({ appointments, limit, type, title }) => {
 
     return (
         <>
-            <Stack direction='vertical' id='upcomingAppointments' gap={4}>
+            <Stack direction='vertical' id='appointment-history-com' gap={4}>
                 <Stack direction='horizontal' id='title'>
                     <h3>{title}</h3>
                 </Stack>
-                <Stack direction='vertical' gap={3}>
+                <Stack direction='vertical' gap={3} id='history-items-container'>
                     {
                         appointments.map((appointment) => {
                             count++
@@ -75,9 +75,6 @@ const PatientAppointmentHistory = ({ appointments, limit, type, title }) => {
                         })
                     }
                 </Stack>
-                {type === '1' &&
-                    <NavLink className='viewmore' onClick={() => setLgShow(true)}>View more</NavLink>
-                }
             </Stack>
             <Modal
                 size="lg"

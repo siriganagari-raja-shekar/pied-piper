@@ -80,7 +80,7 @@ const ProfileCard = (props) => {
     }
 
     return (
-        <Stack direction="horizontal" gap={3} className="justify-content-between" style={{ minHeight: "100%" }}>
+        <Stack direction="horizontal" gap={3} id="profile-card-container" className="justify-content-between" style={{ minHeight: "100%" }}>
             <Stack direction="vertical" gap={3} id='profile-card' className="justify-content-center align-items-center summarySection" >
                 <img src={profilePicture} alt="Profile" />
                 <Stack direction='vertical' gap={1} className="justify-content-center align-items-center flex-grow-0">

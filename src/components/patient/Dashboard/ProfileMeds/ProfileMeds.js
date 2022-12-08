@@ -6,7 +6,8 @@ import { formatDate } from '../../../../services/utils'
 
 const ProfileMeds = (props) => {
     return (
-        <Stack id="profileMedications" direction='vertical' gap={5} >
+        <Stack id="profileMedications" direction='vertical' gap={5} 
+        className=''>
             <Stack id="profile" direction='horizontal' gap={3}>
                 <div id="profilePic">
 

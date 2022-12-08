@@ -52,9 +52,9 @@ const BookAppointments = () => {
     }, [])
     
     return (
-        <Stack id="book-appointment-container" direction='horizontal' gap={3}>
+        <Stack id="book-appointment-container" direction='horizontal' gap={3} className='flex-column flex-lg-row'>
             <NavBar links={links} />
-            <Stack direction='horizontal' gap={3} className='align-items-bottom' style={{width: '100%', margin: '1em'}}>
+            <Stack direction='horizontal' gap={3} id='book-apt-form' className='align-items-bottom' style={{ margin: '1em'}}>
                 <AppointmentForm cities={cities}/>
             </Stack>
         </Stack>
