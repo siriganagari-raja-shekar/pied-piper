@@ -10,8 +10,9 @@ export default function CheckoutForm({user}) {
   const elements = useElements();
   const navigate = useNavigate();
 
-  const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [signupSuccess, setSignupSuccess] = useState(false);
+  const [signupError, setSignUpError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,15 +33,14 @@ export default function CheckoutForm({user}) {
         if(paymentIntent.status === "succeeded"){
             const result = await userSignUp(user);
             if(result.status === "success"){
-                setMessage("Payment done and user created. Please wait while you are being re-directed to signin");
-
+                setSignupSuccess(true);
                 setTimeout(() => {
                     navigate('/signin');
                 }, 5000);
             }
         }
     } catch (error) {
-        setMessage(error.message);
+        setSignUpError(error.message);
         setTimeout(() => {
             navigate('/subscribe');
         }, 5000);
@@ -58,8 +58,20 @@ export default function CheckoutForm({user}) {
           {isProcessing ? "Processing ... " : "Pay now"}
         </span>
       </button>
-      {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
+      {
+        signupError
+        &&
+        <div className="alert alert-danger" role="alert">
+            Something went wrong. Please try again. You are being redirected to the subscribe page again.
+        </div>
+      }
+      {
+          signupSuccess
+          &&
+          <div className="alert alert-success" role="alert">
+              Payment and sign up successful. Please wait while you are being redirected to signin.
+          </div>
+      }
     </form>
   );
 }
