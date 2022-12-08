@@ -1,4 +1,5 @@
 import React from "react";
+import Swal from "sweetalert2";
 import { Outlet } from "react-router-dom";
 
 const DoctorRoutes = () => {
@@ -6,19 +7,28 @@ const DoctorRoutes = () => {
   const user = JSON.parse(localStorage.getItem("user"))
 
   const unAuthenticated = () => {
-    alert("Please login to access the page")
-    localStorage.clear()
-    window.location.href = '/signin'
+    Swal.fire({
+      title: 'Unauthorized access!',
+      text: 'You will be redirected to login page',
+      icon: 'error'
+    })
+    setTimeout(() => {
+      localStorage.clear()
+      window.location.href = '/signin'
+    }, 2000);
   }
-  const permissionDenied= ()=>{
-    alert("You are not permitted to access the page")
+  const permissionDenied = () => {
+    Swal.fire(
+      "You are not permitted to access the page",
+      'failure'
+    )
     localStorage.clear()
     window.location.href = '/signin'
   }
   return (
     <>
       {
-        isAuthenticated ? user.role === "doctor"? <Outlet />: permissionDenied() : unAuthenticated()
+        isAuthenticated ? user.role === "doctor" ? <Outlet /> : permissionDenied() : unAuthenticated()
       }
     </>
   );

@@ -1,8 +1,54 @@
-.summarySection{
+.summarySection {
 
-    img{
+    img {
         width: 8rem;
         height: 8rem;
         border-radius: 5rem;
+    }
+}
+
+#profile-card {
+    background: white;
+    border-radius: 0.5em;
+    box-shadow: 2px 1px 4px -3px #000;
+    flex-grow: 0;
+    padding: 1em;
+    min-width: 300px;
+}
+
+#profile-form {
+    background: white;
+    border-radius: 0.5em;
+    padding: 1em;
+    width: 500px;
+    min-height: 100%;
+}
+
+#profile-form {
+    width: 500px;
+    margin: auto;
+
+    button{
+        width: 100%;
+        background-color: #3e65a7;
+    }
+
+    div {
+        border: solid #3e65a7;
+        border-radius: 0.5em;
+        padding: 0.5em;
+
+        span{
+            float: right;
+            margin-right: 15px;
+        }
+    }
+
+    .invalid-feedback{
+        border-color: #dc3545;
+    }
+
+    .valid-feedback{
+        border-color: #198754;
     }
 }

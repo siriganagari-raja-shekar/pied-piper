@@ -5,7 +5,7 @@ import './RecentPatients.scss'
 import { Stack } from 'react-bootstrap'
 
 const RecentPatients = ({ appointmentHistory }) => {
-  
+
   let count = 0
   return (
     <Stack direction='vertical' gap={3}>

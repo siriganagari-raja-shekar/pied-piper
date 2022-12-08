@@ -13,7 +13,6 @@ const VideoChat = ({ appointment }) => {
         const storedUserName = getStoredUser()
         setUsername(storedUserName.name)
         setRoomName(appointment)
-        console.log(storedUserName.name + "\t" + appointment)
         const res = await axios.post("https://pied-piper-twilio-2284-dev.twil.io/token", {
             identity: storedUserName.name,
             room: appointment

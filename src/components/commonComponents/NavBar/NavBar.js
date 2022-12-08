@@ -10,7 +10,7 @@ const activeLink = (isActive) => {
 const NavBar = (props) => {
     return (
         <>
-            <Stack id="navbar" direction='vertical'>
+            <Stack id="navbar" direction='vertical'  className='flex-grow-0'>
                 <Stack id="header" direction='horizontal'>
                     <p id="logo">PP</p> <p id="title">PiedPiper</p>
                 </Stack>

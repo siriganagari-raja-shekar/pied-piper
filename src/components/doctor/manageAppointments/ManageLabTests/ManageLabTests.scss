@@ -1,0 +1,24 @@
+#manage-prescription-container {
+    background: white;
+    padding: 1em;
+    border-radius: 0.5em;
+    box-shadow: 2px 1px 5px -3px #000;
+
+    p{
+        margin: 0;
+    }
+
+    button{
+        background-color: #3E65A7;
+        border: none;
+        box-shadow: 2px 1px 5px -3px #000;
+    }
+}
+
+#meds-list {
+    background: #e0e6f1;
+    padding: 1em;
+    overflow: scroll;
+    border-radius: 0.5em;
+    height: 300px;
+}

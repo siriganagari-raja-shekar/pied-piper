@@ -1,24 +1,22 @@
 import React from 'react'
 import { Stack, Button, Modal } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import './Appointments.scss'
 import { NavLink } from 'react-router-dom'
 import { formatDate } from '../../../services/utils'
 import profile from '../../../Assets/Images/profilejpg.jpg'
 import { useState } from 'react'
 import VideoChat from '../../twilio/VideoChat'
+import './PatientAppointmentHistory.scss'
 
-
-
-const Appointment = ({ appointment, type }) => {
-    const navigate= useNavigate()
+const Appointment = ({appointment, type}) => {
+    const navigate = useNavigate()
     return (
         <Stack
             className="appointments"
             direction="horizontal"
             gap={3}
-            onClick={(e) => { 
-                navigate(`/doctor/manageAppointment/${appointment.id}`)
+            onClick={(e) => {
+                navigate(`/patient/manageAppointment/${appointment.id}`)
             }}
         >
             <Stack direction="horizontal" className='justify-content-between container-fluid'>
@@ -39,7 +37,7 @@ const Appointment = ({ appointment, type }) => {
                     {type === '1' &&
                         <p>{formatDate(appointment.time, "Do MMM YY, h:mm A")}</p>
                     }
-                    {type === '2'&&
+                    {type === '2' &&
                         <p>{formatDate(appointment.time, "Do MMM YY, h:mm A")}</p>
                     }
                 </Stack>
@@ -48,17 +46,16 @@ const Appointment = ({ appointment, type }) => {
     )
 }
 
-const Appointments = ({ appointments, limit, type, title }) => {
+const PatientAppointmentHistory = ({ appointments, limit, type, title }) => {
     let count = 0
     const [lgShow, setLgShow] = useState(false);
     const [videoCallModalDisplay, setVideoCallModalDisplay] = useState(false);
-    console.log(appointments);
 
     return (
         <>
             <Stack direction='vertical' id='upcomingAppointments' gap={4}>
                 <Stack direction='horizontal' id='title'>
-                   <h3>{title}</h3>
+                    <h3>{title}</h3>
                 </Stack>
                 <Stack direction='vertical' gap={3}>
                     {
@@ -98,7 +95,12 @@ const Appointments = ({ appointments, limit, type, title }) => {
                         {
                             appointments.map((appointment) => {
                                 return (
-                                    <Appointment key={appointment.id} appointment={appointment} videoCallModalDisplay={videoCallModalDisplay} setVideoCallModalDisplay={setVideoCallModalDisplay} />
+                                    <Appointment
+                                        key={appointment.id}
+                                        appointment={appointment}
+                                        videoCallModalDisplay={videoCallModalDisplay}
+                                        setVideoCallModalDisplay={setVideoCallModalDisplay}
+                                    />
                                 )
                             })
                         }
@@ -124,4 +126,4 @@ const Appointments = ({ appointments, limit, type, title }) => {
     )
 }
 
-export default Appointments
+export default PatientAppointmentHistory

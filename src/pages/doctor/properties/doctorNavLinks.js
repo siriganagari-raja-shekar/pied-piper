@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faChartLine, faClockRotateLeft,
-    faUser, faRightFromBracket, faHospitalUser
+    faUser, faRightFromBracket,
+    faCalendarCheck
 } from '@fortawesome/free-solid-svg-icons'
 
 export const doctorNavLinks = [
@@ -11,14 +12,14 @@ export const doctorNavLinks = [
         icon: <FontAwesomeIcon icon={faChartLine} />
     },
     {
+        name: "Appointments",
+        url: "/doctor/appointments",
+        icon: <FontAwesomeIcon icon={faCalendarCheck} />
+    },
+    {
         name: "Appointment History",
         url: "/doctor/history",
         icon: <FontAwesomeIcon icon={faClockRotateLeft} />
-    },
-    {
-        name: "Patients",
-        url: "/doctor/patients",
-        icon: <FontAwesomeIcon icon={faHospitalUser} />
     },
     {
         name: "Profile",
