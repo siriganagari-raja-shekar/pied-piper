@@ -10,6 +10,7 @@ import ManagePrescription from '../../../components/doctor/manageAppointments/Ma
 import ManageLabTests from '../../../components/doctor/manageAppointments/ManageLabTests/ManageLabTests'
 import { useParams } from 'react-router-dom'
 import { patientNavLInks } from '../../patient/Properties/patientNavLinks'
+import './ManageAppointments.scss'
 
 
 const ManageAppointments = () => {
@@ -26,7 +27,7 @@ const ManageAppointments = () => {
     return (
         <Stack id="doctor-dashboard-container" direction='horizontal' gap={3}>
             <NavBar links={user.role === "doctor" ? doctorNavLinks : patientNavLInks} />
-            <Stack direction='horizontal' gap={3} style={{ width: '100%', margin: '1em' }}>
+            <Stack direction='horizontal' id='ma-main' gap={3} style={{ width: '100%', margin: '1em' }}>
                 <Stack direction='vertical' gap={3}>
                     <PatientProfileAppointment appointmentId={params.id} displayHeading={false}/>
                     <AppointmentChat appointmentId={params.id} />

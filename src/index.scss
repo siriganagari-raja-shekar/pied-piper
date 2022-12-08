@@ -17,11 +17,8 @@ body,html, #root {
     border: none;
 }
 
-$grid-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1500px
-);
+@media screen and (max-width: 850px){
+    html, body, #root{
+        height: auto;
+    }
+}

@@ -22,3 +22,9 @@
     border-radius: 0.5em;
     height: 300px;
 }
+
+@media screen and (max-width: 850px) {
+    #pres-con{
+        flex-direction: column;
+    }
+}

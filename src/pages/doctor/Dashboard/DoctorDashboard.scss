@@ -2,3 +2,13 @@
     height: 100%;
     background-color: #e8e8e8;
 }
+
+@media screen and (max-width: 850px) {
+    #doctor-dashboard-container{
+        flex-direction: column;
+    }
+
+    #appnxt-container{
+        flex-direction: column;
+    }
+}

@@ -106,7 +106,7 @@ export default function ManageLabTests({ appointmentId }) {
   return (
     <Stack id="manage-prescription-container" direction='vertical' gap={3}>
       <h3>Lab tests</h3>
-      <Stack direction='horizontal' gap={3}>
+      <Stack direction='horizontal' gap={3} id='lab-con'>
         <Stack direction='vertical' id="meds-list" gap={2}>
           {tests.map((test) => (
             <Stack direction='horizontal' key={test.id} className='justify-content-between'>

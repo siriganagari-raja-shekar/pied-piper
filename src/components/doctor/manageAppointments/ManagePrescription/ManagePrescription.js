@@ -106,7 +106,7 @@ export default function ManagePrescription({ appointmentId }) {
   return (
     <Stack id="manage-prescription-container" direction='vertical' gap={3}>
       <h3>Prescription</h3>
-      <Stack direction='horizontal' gap={3}>
+      <Stack direction='horizontal' gap={3} id='pres-con'>
         <Stack direction='vertical' id="meds-list" gap={2}>
           {meds.map((med) => (
             <Stack direction='horizontal' key={med.id} className='justify-content-between'>
