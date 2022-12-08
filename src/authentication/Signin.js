@@ -4,6 +4,7 @@ import { authenticateUser } from "../services/authService";
 import {useEffect} from 'react';
 import * as userService from './../services/userService';
 import { useNavigate } from "react-router-dom";
+import './Signin.scss'
 
 function Signin() {
   const [userData, setUserData] = useState({ username: "", password: "" });
@@ -53,8 +54,8 @@ function Signin() {
 
   return (
     <>
-      <Stack className='align-items-center justify-content-center' style={{ height: '100%', backgroundColor: "#e8e8e8" }}>
-        <Card style={{ width: '30%' }}>
+      <Stack className='align-items-center justify-content-center' id='signin-container' style={{ height: '100%', backgroundColor: "#e8e8e8" }}>
+        <Card id='signin-card' >
           <Card.Header><h3 className='text-center'>Sign in</h3></Card.Header>
           <Card.Body>
             {errorMessage.value && (

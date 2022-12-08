@@ -1,0 +1,25 @@
+#signin-card{
+    width: 30%;
+}
+
+@media screen and (max-width: 500px) {
+    
+    #signin-container{
+        padding: 16em 1em;
+    }
+
+    #signin-card{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    
+    #signin-container{
+        padding: 25em 1em;
+    }
+
+    #signin-card{
+        width: 50%;
+    }
+}

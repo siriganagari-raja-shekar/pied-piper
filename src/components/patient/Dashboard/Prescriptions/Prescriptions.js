@@ -5,15 +5,17 @@ import { NavLink, Stack } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './Prescriptions.scss'
+import { useNavigate } from 'react-router-dom';
 
-const Prescription = ({ prescription, doctor }) => {
+const Prescription = ({ prescription, doctor, appointmentId}) => {
+    const navigate= useNavigate()
     return (
         <Stack direction='horizontal' className='prescription'>
             <Stack direction='vertical'>
                 <p><b>{prescription.problemDiagnosed}</b>, {prescription.date}</p>
                 <p style={{ fontSize: '12px' }}>by {doctor.name}</p>
             </Stack>
-            <span><FontAwesomeIcon icon={faEye} /></span>
+            <span><FontAwesomeIcon icon={faEye} onClick={(e)=>navigate(`/patient/manageAppointment/${appointmentId}`)} /></span>
         </Stack>
     )
 }
@@ -36,6 +38,7 @@ const Prescriptions = ({ appointmentHistory }) => {
                                 <Prescription key={appointment.prescription.id}
                                     prescription={appointment.prescription}
                                     doctor={appointment.doctor}
+                                    appointmentId= {appointment.id}
                                 />
                             )
                         }

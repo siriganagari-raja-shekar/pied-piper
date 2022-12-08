@@ -3,16 +3,18 @@ import tickMarkPath from '../../../Assets/Images/circle-check-regular.svg';
 const Memberships = () => {
 
     const getCardList = (listItemsContents) =>{
+        let i=0;
         const listElements = listItemsContents.map( listItemContent =>{
+            i++;
             return (
-            <li>
-                <img className="img-fluid" src={tickMarkPath} alt="Check mark"></img>
+            <li key={i}>
+                <img key={i} className="img-fluid" src={tickMarkPath} alt="Check mark"></img>
                 {listItemContent}
             </li>
             );
         });
         return(
-            <ul>
+            <ul key={i}>
                 {listElements}
             </ul>
         );
@@ -39,7 +41,7 @@ const Memberships = () => {
                     aria-labelledby="personal-plan-tab">
                     <div className="row justify-content-evenly ">
                         <div className="membership card bronze my-3 col-12 col-sm-6">
-                            <img src="..." className="card-img-top" alt="..." />
+                            
                             <div className="card-body">
                                 <h5 className="card-title">Bronze</h5>
                                 <p className="my-0"><span className="membership-price ">$5</span>/mo</p>
@@ -61,7 +63,7 @@ const Memberships = () => {
                             </div>
                         </div>
                         <div className="membership card gold my-3 col-12 col-sm-6">
-                            <img src="..." className="card-img-top" alt="..." />
+                            
                             <div className="card-body">
                                 <h5 className="card-title">Gold</h5>
                                 <p className="my-0"><span className="membership-price ">$10</span>/mo</p>
@@ -83,7 +85,7 @@ const Memberships = () => {
                             </div>
                         </div>
                         <div className="membership card diamond my-3 col-12 col-sm-6">
-                            <img src="..." className="card-img-top" alt="..." />
+                            
                             <div className="card-body">
                                 <h5 className="card-title">Diamond</h5>
                                 <p className="my-0"><span className="membership-price ">$15</span>/mo</p>
@@ -105,7 +107,7 @@ const Memberships = () => {
                             </div>
                         </div>
                         <div className="membership card platinum my-3 col-12 col-sm-6">
-                            <img src="..." className="card-img-top" alt="..." />
+                            
                             <div className="card-body">
                                 <h5 className="card-title">Platinum <span className="badge badge-primary">Popular</span></h5>
                                 <p className="my-0"><span className="membership-price ">$20</span>/mo</p>
@@ -131,7 +133,7 @@ const Memberships = () => {
                 <div className="tab-pane fade " id="family-plan" role="tabpanel" aria-labelledby="family-plan-tab">
                     <div className="row justify-content-evenly">
                         <div className="membership card  col-12 col-sm-6">
-                            <img src="..." className="card-img-top" alt="..." />
+                            
                             <div className="card-body">
                                 <h5 className="card-title">Basic</h5>
                                 <p className="my-0"><span className="membership-price ">$5</span>/mo</p>
@@ -153,7 +155,7 @@ const Memberships = () => {
                             </div>
                         </div>
                         <div className="membership card  col-12 col-sm-6">
-                            <img src="..." className="card-img-top" alt="..." />
+                            
                             <div className="card-body">
                                 <h5 className="card-title">Premium</h5>
                                 <p className="my-0"><span className="membership-price ">$10</span>/mo</p>
